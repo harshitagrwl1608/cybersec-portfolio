@@ -1,0 +1,28 @@
+title: [Descriptive Detection Name]
+id: [generate-a-uuid-here]
+status: experimental
+description: >
+  What this rule detects and why it matters (e.g. "Detects repeated failed
+  SSH auth attempts from a single source, indicating brute-force activity").
+author: Harshit
+date: 2026/MM/DD
+references:
+  - [THM room / source that inspired this]
+logsource:
+  product: linux   # or windows, etc.
+  service: auth     # or sysmon, etc.
+detection:
+  selection:
+    EventID: 0000
+    # add key-value fields to match
+  condition: selection
+falsepositives:
+  - Legitimate admin activity, misconfigured scripts, etc.
+level: medium
+tags:
+  - attack.credential_access
+  - attack.t1110   # MITRE ATT&CK technique ID
+
+# --- Testing notes (delete or move to companion .md when publishing) ---
+# Tested against: [sample log source]
+# Result: [detected / missed / false positive rate]
