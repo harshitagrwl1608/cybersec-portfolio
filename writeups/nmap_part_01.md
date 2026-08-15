@@ -20,12 +20,10 @@ used masscan for a faster sweep on a larger range for comparison, then
 resolved a couple hostnames via rDNS. Captured the ARP/ICMP traffic in 
 Wireshark to see what the probes actually looked like on the wire.
 
-```
 ![Nmap host discovery scan results](images/nmap_room_01_01.png)
 ![Nmap host discovery scan results](images/nmap_room_01_02.png)
 ![Nmap host discovery scan results](images/nmap_room_01_03.png)
 ![Nmap host discovery scan results](images/nmap_room_01_04.png)
-```
 
 ## Detection angle (SOC-relevant)
 A sudden ARP broadcast sweep or ICMP flood across a subnet from one host is a classic recon indicator.
