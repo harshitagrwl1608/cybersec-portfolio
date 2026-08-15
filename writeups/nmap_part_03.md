@@ -1,11 +1,11 @@
-# [Nmap Live Host Discovery] — TryHackMe
+# [Room Name] — TryHackMe
 
 **Path:** (e.g. Cyber Security 101 / Jr Penetration Tester)
-**Date:** 2026-06-13
-**Category:** Reconnaissance — Host Discovery
+**Date:** YYYY-MM-DD
+**Category:** Recon / Exploitation / Detection / etc.
 
 ## Objective
-Learn how to identify which hosts on a network are alive/reachable before scanning ports, using ARP, ICMP, and TCP/UDP ping sweeps.
+What the room teaches, one or two lines.
 
 ## Tools used
 - e.g. Nmap, Wireshark, Burp Suite
