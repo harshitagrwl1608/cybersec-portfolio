@@ -15,8 +15,10 @@ firewalls and IDS.
 ## Methodology
 Performed a Xmas scan using flag -sX on the THM lab  machine.Discovered few ports
 open but filtered.Useful for older systems where closed ports have to reply with RST response.
-Fragmented scan(-f or --mtu) is uded to split scan packet into multiple fragments which 
+
+Fragmented scan(-f or --mtu) is used to split scan packet into multiple fragments which 
 can sometimes pass simple packet filtering firewalls not modern stateful firewalls.
+
 Maimon scan exploited a quirk in really old legacy systems. Most modern systems don't 
 behave that way.
 
