@@ -22,8 +22,13 @@ can sometimes pass simple packet filtering firewalls not modern stateful firewal
 Maimon scan exploited a quirk in really old legacy systems. Most modern systems don't 
 behave that way.
 
+**Xmas scan output:**
 ![Xmas scan output](images/nmap_room_03_01.png)
+
+**Fragmented scan output**
 ![Fragmented scan output](images/nmap_room_03_02.png)
+
+**TCP Maimon Scan**
 ![TCP Maimon Scan](images/nmap_room_03_03.png)
 
 
