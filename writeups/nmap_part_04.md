@@ -55,4 +55,4 @@ a strong candidate for a volumetric/rate-based Sigma rule (e.g. many
 distinct probe types from one source IP against one target in <X seconds).
 
 ## Key takeaway
-1–2 sentences: what you learned or what surprised you.
+This room tied the whole series together — realized the real workflow is host discovery → port scan → service/OS fingerprinting → targeted script, each room builds directly into the next rather than being separate skills.
