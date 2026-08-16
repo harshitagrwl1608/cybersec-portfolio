@@ -21,12 +21,12 @@ it — no packets hit the target, so nothing to detect on their end.
 
 **RDAP Command Execution**
   
-![RDAP command execution](Network_Reconnaissance_01_01.png)
+![RDAP command execution](images/Network_Reconnaissance_01_01.png)
 
 **Dig command execution**
 
-![Dig command execution](Network_Reconnaissance_01_02.png)
-![Dig command execution](Network_Reconnaissance_01_03.png)
+![Dig command execution](images/Network_Reconnaissance_01_02.png)
+![Dig command execution](images/Network_Reconnaissance_01_03.png)
 
 
 ## Detection angle (SOC-relevant)
