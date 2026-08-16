@@ -25,6 +25,8 @@ NSE basics: scripts live in /usr/share/nmap/scripts, written in Lua, ~600 script
 
 Saving results: -oN (normal), -oX (XML), -oA (all formats at once)
 
+
+**Service/OS detection output**
 ![Service/OS detection output](images/nmap_room_04_01.png)
 
 ![OS detection output](images/nmap_room_04_02.png)
