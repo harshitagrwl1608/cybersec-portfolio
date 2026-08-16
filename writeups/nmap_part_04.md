@@ -1,14 +1,16 @@
-# [Room Name] — TryHackMe
+# [Nmap Post Port Scans] — TryHackMe
 
-**Path:** (e.g. Cyber Security 101 / Jr Penetration Tester)
-**Date:** YYYY-MM-DD
-**Category:** Recon / Exploitation / Detection / etc.
+**Path:** Jr Penetration Tester
+**Date:** 2026-08-15
+**Category:** Reconnaissance → Vulnerability Scanning (NSE)
 
 ## Objective
-What the room teaches, one or two lines.
+Move beyond "is the port open" to identifying the actual service, version, 
+and OS behind it, and use the Nmap Scripting Engine (NSE) — including 
+vuln/exploit-category scripts — to enumerate deeper.
 
 ## Tools used
-- e.g. Nmap, Wireshark, Burp Suite
+- Nmap, Wireshark, NSE
 
 ## Methodology
 Walk through your approach step by step — what you ran, why you chose it, what it told you.
