@@ -19,7 +19,9 @@ telnet, and a browser — trading passivity for more detailed information.
 - telnet helped me service banners from running open ports. Service banners can be used for knowing
   what system and version target is on
 - similar to telnet, netcat is a modern version, It is much more helpful and reliable
-  providing a list of flags hat can be used
+  providing a list of flags that can be used
+- Using different types of browser extensions such as FoxyProcy and Wappalyzel to view tech stacks, network access etc.
+- On a webpage source sometimes sensitive detailed like api keys, access tokens etc.
 
 **Ping an IP**
 
