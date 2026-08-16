@@ -28,7 +28,7 @@ Saving results: -oN (normal), -oX (XML), -oA (all formats at once)
 ![Service/OS detection output](images/nmap_room_04_01.png)
 ![OS detection output](images/nmap_room_04_02.png)
 ![traceroute output](images/nmap_room_04_03.png)
-![NSE default scripts output](images/nmap_room_04_04.png)(images/nmap_room_04_05.png)
+![NSE default scripts output]((images/nmap_room_04_04.png),(images/nmap_room_04_05.png))
 ![NSE exploit script output](images/nmap_room_04_06.png)
 
 ## Detection angle (SOC-relevant)
