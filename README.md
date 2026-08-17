@@ -1,6 +1,6 @@
 # Cybersecurity Portfolio — SOC Analyst Track
 
-B.Tech IT student (YMCA University), self-studying toward CompTIA Security+ (SY0-701, exam Nov 11 2026),
+B.Tech IT student (YMCA University), self-studying toward CompTIA Security+ (SY0-701)
 building hands-on SOC/blue-team skills alongside coursework. This repo tracks detection rules, room
 writeups, and small projects — not a raw dump of study notes.
 
