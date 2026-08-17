@@ -31,6 +31,7 @@ alternatives (SSH, SSL/TLS) that mitigate them.
 **Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS**
 
 ![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](images/Network_Reconnaissance_04_04.png)
+
 ![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](images/Network_Reconnaissance_04_05.png)
 
 
@@ -40,3 +41,4 @@ a classic, well-documented brute-force detection pattern — a strong
 candidate for an early Sigma rule.
 
 ## Key takeaway
+Learnt how we can connect to unencrypted protocols safely by starting TLS using STARTTLS 
