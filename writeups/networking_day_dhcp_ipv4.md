@@ -16,11 +16,12 @@ autoconfiguration via SLAAC, by inspecting my own machine's live config.
 - similarly running < sudo dhclient -v {Network Interface} > here running for wlan 0 showed the DORA requests running in actual time. How on a IPv4 network a pc requests IP address from a DHCP server.
 
   
-![IP Address](networking_day_dhcp_ipv6_01.png)
+![IP Address](images/networking_day_dhcp_ipv6_01.png)
 
-![DHCP Request](networking_day_dhcp_ipv6_02.png)
+![DHCP Request](images/networking_day_dhcp_ipv6_02.png)
 
-![DHCP Request](networking_day_dhcp_ipv6_03.png)
+![DHCP Request](images/networking_day_dhcp_ipv6_03.png)
+
 
 
 ## Detection angle (SOC-relevant)
