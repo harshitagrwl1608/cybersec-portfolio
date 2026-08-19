@@ -15,4 +15,5 @@ Keeping the streak going, but today was a lighter one — no hands-on room, just
 
 Nothing to run or break today, just filling in gaps — SNMP and DR concepts needed a re-watch since they didn't fully stick the first time. Next session I want to actually get hands-on with SNMP enumeration since that's the one topic that really needs a lab to click.
 
-**Takeaway:** theory days matter too — better to shore up the fundamentals now than fumble through a room later not knowing what a community string even is.
+**Takeaway:** 
+Just learning how different protocols are used for administering, monitoring and securing the systems.
