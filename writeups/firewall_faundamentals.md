@@ -37,5 +37,4 @@ Understanding rule logic here directly informs what firewall log alerts
 should actually look for.
 
 ## Key takeaway
-[Fill in]
-EOF
+learnt about basic firewall configs on both windows and linux.
