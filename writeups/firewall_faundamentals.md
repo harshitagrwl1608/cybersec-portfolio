@@ -17,12 +17,16 @@ layers.
 - for windows firewall, I analyzed the inbuilt inbound and outbound rules for different ports and protocols
 - made a custom rule to block http traffic over port-80 of my own
 
-- 
+- for linux, inside the lab machine I ran few commands with ufw to activate firewall, configure the incoming and outgoing traffic, configure and check the default rules.
 
 **Analyzing inbound rules in a windows inbuilt firewall lab**
 
-![Analyzing inbound rules in a windows inbuilt firewall lab](firewall_faundamentals_02.png)
+![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_01.png)
+![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_02.png)
 
+**Configuring linux firewall(ufw)**
+
+![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_03.png)
 
 
 ## Detection angle (SOC-relevant)
