@@ -13,9 +13,10 @@ vuln/exploit-category scripts — to enumerate deeper.
 - Nmap, Wireshark, NSE
 
 ## Methodology
--sV for service/version detection, and --version-intensity (0–9) or the shortcuts --version-light (intensity 2) vs --version-all (intensity 9) — note the tradeoff: higher intensity = more accurate but slower/noisier
+-sV for service/version detection, and --version-intensity (0–9) or the shortcuts --version-light (intensity 2) vs --version-all (intensity 9) — note- higher intensity = more accurate but slower/noisier
 
--O for OS detection — how it works (TCP/IP stack fingerprinting quirks) and its accuracy (needs at least one open + one closed port)
+-O for OS detection — how it works (TCP/IP stack fingerprinting) and its accuracy (needs at least one open + one closed port)
+requires full tcp 3 way handshake to accomplish
 
 --traceroute — note nmap's traceroute works backwards from normal (starts high TTL, decreases) unlike standard OS traceroute
 
@@ -55,4 +56,5 @@ a strong candidate for a volumetric/rate-based Sigma rule (e.g. many
 distinct probe types from one source IP against one target in <X seconds).
 
 ## Key takeaway
-This room tied the whole series together — realized the real workflow is host discovery → port scan → service/OS fingerprinting → targeted script, each room builds directly into the next rather than being separate skills.
+This room tied the whole series together — realized the real workflow is host discovery → port scan → service/OS fingerprinting → targeted script
+
