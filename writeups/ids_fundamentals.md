@@ -42,22 +42,24 @@ alert   icmp      any        any           ->  $HOME_NET       any
 ## Methodology
 
 - Learnt about what is a IDS(Intrusion Detection System) and how it detects threats inside a network
-- What are the types of IDS - Signature based, Anomally based and Hybrid 
+- What are the types of IDS - Signature based, Anomally based and Hybrid
+  
 - Snort Startup Command
   sudo snort -q -l /var/log/snort -i lo -A alert_fast -c /etc/snort/snort.lua
-  
-Meaning : Run Snort quietly (-q)
-using /etc/snort/snort.lua (config file for Snort 3),
-monitoring the local loopback interface (lo),
-and write fast-format alerts/logs (-A alert_fast)
-under /var/log/snort.
 
+  Meaning : Run Snort quietly (-q)
+  using /etc/snort/snort.lua (config file for Snort 3),
+  monitoring the local loopback interface (lo),
+  and write fast-format alerts/logs (-A alert_fast)
+  under /var/log/snort.
+
+  
 - Snort PCAP Analysis Command
   
   sudo snort -q -l /var/log/snort -r Task.pcap -A alert_fast -c /etc/snort/snort.lua
 
-- analysed the logs of a give pcap file using snort to detect the threats and the IPs from which the attack was being carried out
-also analyzed the alert message generated including the reason behind it
+- As **Lab Work** analysed the logs of a give pcap file using snort to detect the threats and the IPs from which the attack was     being carried out
+  Also analyzed the alert message generated including the reason behind it.
 
 **Snort Custom Rule and Check**
 
@@ -75,4 +77,4 @@ complement, not a replacement.
 
 ## Key takeaway
 Snort is a great tool when it comes to analyzing a network based on rules
-it is somewhat similar to firewall but instead acting as a barricade to network it works inside the network as a NIDS.
+it is somewhat similar to firewall but instead acting as a barricade to network it works inside the network as a NIDS generating alerts for malicious  .
