@@ -60,7 +60,9 @@ under /var/log/snort.
 also analyzed the alert message generated including the reason behind it
 
 **Snort Custom Rule and Check**
+
 ![Snort Custom Rule](images/Snort_02.png)
+
 ![Snort custom rule check](images/Snort_01.png)
 
 ## Detection angle (SOC-relevant)
