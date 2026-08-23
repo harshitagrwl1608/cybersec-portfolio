@@ -1,0 +1,37 @@
+title: SSH Connection Detected
+id: 7f3a1c2e-4b5d-4a89-9e21-3c8f6d1a2b4e
+status: experimental
+description: >
+  Detects inbound TCP connections to port 22 (SSH), based on the Snort rule
+  from TryHackMe's IDS Fundamentals room.
+  Useful as a baseline visibility
+  rule — SSH access should be expected/limited to known sources, so this
+  flags any connection attempt for review against an allowlist.
+author: Harshit
+date: 2026/08/22
+references:
+  - TryHackMe - IDS Fundamentals (Cyber Security 101)
+logsource:
+  category: network
+  product: snort 
+detection:
+  selection:
+    dst_port: 22
+    protocol: tcp
+  condition: selection
+falsepositives:
+  - Legitimate SSH access from known admin IPs or automation (adjust with
+    an allowlist filter for production use)
+level: low
+tags:
+  - attack.initial_access
+  - attack.t1021.004   # Remote Services: SSH
+
+# --- Original Snort rule this was derived from ---
+# alert tcp any any -> $HOME_NET 22 (msg:"SSH Connection Detected"; sid:1000002; rev:1;)
+#
+# Key difference: Snort's rule fires on every single connection attempt
+# with no context. This Sigma version is meant to be paired with a source
+# IP allowlist filter (excluded field) in a real SIEM to reduce noise —
+# raw "any SSH connection" alerts are too broad to be useful at scale.
+EOF
