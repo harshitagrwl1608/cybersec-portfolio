@@ -5,8 +5,9 @@
 **Category:** Reconnaissance — Passive (OSINT)
 
 ## Objective
-Learn to gather information about a target without directly interacting with
+Learn to gather information about a target without directly interacting with 
 it — no packets hit the target, so nothing to detect on their end.
+
 
 ## Tools used
 - whois, RDAP, nslookup, dig
