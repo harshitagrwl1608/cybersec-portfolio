@@ -11,6 +11,7 @@ what a detection query against this data would look like.
 ufw logging on
 
 # Tail the log while running the attack scans from the attacker machine
+touch /var/log/ufw.log
 tail -f /var/log/ufw.log
 ```
 
