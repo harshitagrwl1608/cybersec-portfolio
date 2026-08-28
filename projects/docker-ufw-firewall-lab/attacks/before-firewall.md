@@ -28,24 +28,24 @@ Container IP: 172.17.0.2
 
 ## Output
 - discovered the ip address of docker container
-  ![here_images](projects/Images/firewall_LAB_01.png)
+  ![here_images](../../projects/Images/firewall_LAB_01.png)
 - discovered the active services running on target with port number and type of service
 
   used stealth SYN scan, XMAS scan
 
-   ![here_images](projects/Images/firewall_LAB_02.png)
-   ![here_images](projects/Images/firewall_LAB_03.png)
-   ![here_images](projects/Images/firewall_LAB_04.png)
+   ![here_images](../../projects/Images/firewall_LAB_02.png)
+   ![here_images](../../projects/Images/firewall_LAB_03.png)
+   ![here_images](../../projects/Images/firewall_LAB_04.png)
 
 - discovered the version number and other small details of every running service
-   ![here_images](projects/Images/firewall_LAB_06.png)
+   ![here_images](../../projects/Images/firewall_LAB_06.png)
   
 - ran standard scripts auto-built into nmap standard installation --default and --intrusive
-   ![here_images](projects/Images/firewall_LAB_07.png)
+   ![here_images](../../projects/Images/firewall_LAB_07.png)
   
-   ![here_images](projects/Images/firewall_LAB_08_01.png)
-   ![here_images](projects/Images/firewall_LAB_08_02.png)
-   ![here_images](projects/Images/firewall_LAB_08_03.png)
+   ![here_images](../../projects/Images/firewall_LAB_08_01.png)
+   ![here_images](../../projects/Images/firewall_LAB_08_02.png)
+   ![here_images](../../projects/Images/firewall_LAB_08_03.png)
 
 
 ## Discovery
