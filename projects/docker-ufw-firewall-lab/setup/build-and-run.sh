@@ -18,4 +18,5 @@ docker rm -f firewall-target 2>/dev/null || true
 docker run -it \
     --name firewall-target \
     --cap-add=NET_ADMIN \
+    --cap-add=SYSLOG \
     firewall-target
