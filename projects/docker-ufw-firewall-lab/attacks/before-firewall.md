@@ -1,16 +1,29 @@
-# Nmap Scan — BEFORE UFW Enabled
+# Network Reconnaissance & Firewall Lab
 
-## Purpose
-Baseline scan to confirm which ports/services are reachable with no
-firewall rules active.
+## Objective
 
-## Command
-\`\`\`
-nmap -sV -p- <container_ip>
-\`\`\`
+Perform network reconnaissance against a Docker container and establish a baseline before enabling UFW.
 
-## Output
-[paste raw output here]
 
-## Observations
-[Which ports were open, any banners grabbed, expected since no filtering yet]
+## Target -
+Container IP: 172.17.0.2
+
+1. **Network configuration**
+  Command used -
+   ip a 
+   
+   Output - Shows the network interfaces and IP addresses assigned to the container.
+   ![images](images/firewall_LAB_01.png)
+   
+2. **SYN Scan**
+Command Used - 
+sudo nmap -Pn -sS -v 172.17.0.2
+
+Performs a TCP SYN scan to identify open ports.
+
+Output
+SYN Scan Result
+
+3.
+
+   
