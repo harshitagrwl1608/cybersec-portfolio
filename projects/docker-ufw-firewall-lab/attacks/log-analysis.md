@@ -20,12 +20,9 @@ Will update if the issue gets resolved
 
 ## Raw Log Output
 
-## Pulling Just the Block Events
- tcpdump -ni any 'tcp[tcpflags] & tcp-syn != 0' -w /tmp/nmap-scan.pcap  
- 
- tcpdump -nn -r /tmp/nmap-scan.pcap | head -50  
+## tcpdump logs and iptables counters
 
- ![image here](../../../../projects/Images/logs_01.png)
+ ![image here](../../../projects/Images/logs_01.png)
  
  ![image here](../../../projects/Images/logs_02.png)
  
@@ -43,7 +40,6 @@ Will update if the issue gets resolved
 
  ![image here](../../../projects/Images/logs_09.png)
 
- ## Raw Log Output
 Despite `ufw logging on` being enabled and `rsyslogd` running inside the
 container, `/var/log/ufw.log` never populated with entries — including after
 enabling `ufw logging full` and confirming rsyslog was active. Investigation
@@ -91,6 +87,8 @@ those ports.
 
 ## Basic Detection Query (conceptual)
 If this log were ingested into a SIEM, the equivalent of "flag a port scan" is:
+count(distinct dst_port) by src_ip within 60s > threshold
+
 This is the same logic behind the Sigma rule idea in the main README's 
 Detection Angle section — this file is the evidence that logic actually holds 
 up against real log data, not just a theoretical claim.
