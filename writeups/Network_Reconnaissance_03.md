@@ -32,7 +32,7 @@ and their built-in insecurities — mainly cleartext transmission.
 
 **POP3 Request using telnet**
 
-![POP3 request using telnet](images/Network_Reconnaissance_03_02.png)
+![POP3 request using telnet](images/Network_Reconnaissance_03_04.png)
 
 
 ## Detection angle (SOC-relevant)
