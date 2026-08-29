@@ -26,7 +26,6 @@ Network+ (self-study) → TryHackMe (Pre Security cherry-picks + full Cyber Secu
 - [ ] SOC Level 1 path complete
 - [ ] 2 Sigma rules published + tested
 - [ ] 1 full incident report published
-- [ ] Security+ exam — Nov 11, 2026
 
 ## Note on TryHackMe content
 Writeups here describe methodology and reasoning, not flags/answers, in line with THM's terms.
