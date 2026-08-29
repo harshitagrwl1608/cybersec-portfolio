@@ -15,6 +15,8 @@ touch /var/log/ufw.log
 tail -f /var/log/ufw.log
 ```
 In my setup here, due to some config issues because to using same machine I used tcpdump on the container to analyze logs.
+I did try many troubleshoots but to no effect so here I am with tcpdump logs and iptables counters.
+Will update if the issue gets resolved
 
 ## Raw Log Output
 
@@ -23,23 +25,23 @@ In my setup here, due to some config issues because to using same machine I used
  
  tcpdump -nn -r /tmp/nmap-scan.pcap | head -50  
 
- ![image here](../Images/logs_01.png)
+ ![image here](../../../../projects/Images/logs_01.png)
  
- ![image here](../Images/logs_02.png)
+ ![image here](../../../projects/Images/logs_02.png)
  
- ![image here](../Images/logs_03.png)
+ ![image here](../../../projects/Images/logs_03.png)
 
- ![image here](../Images/logs_04.png)
+ ![image here](../../../projects/Images/logs_04.png)
 
- ![image here](../Images/logs_05.png)
+ ![image here](../../../projects/Images/logs_05.png)
 
- ![image here](../Images/logs_06.png)
+ ![image here](../../../projects/Images/logs_06.png)
 
- ![image here](../Images/logs_07.png)
+ ![image here](../../../projects/Images/logs_07.png)
 
- ![image here](../Images/logs_08.png)
+ ![image here](../../../projects/Images/logs_08.png)
 
- ![image here](../Images/logs_09.png)
+ ![image here](../../../projects/Images/logs_09.png)
 
  ## Raw Log Output
 Despite `ufw logging on` being enabled and `rsyslogd` running inside the
@@ -100,3 +102,6 @@ logs, but the more valuable result was discovering that container logging
 pipelines have a non-obvious dependency (kernel log access via the SYSLOG
 capability) that can break silently — the kind of gap that's easy to miss
 in production until an incident happens and the logs simply aren't there.
+*If anyone has face similar issue while setting up similar lab and facing 'no logs'
+issue and troubleshooted the problem, i would love to get insights - so please do contact me 
+through mail- 'harshitagrwl1608@gmail.com'
