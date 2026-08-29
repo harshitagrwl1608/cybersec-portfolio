@@ -20,7 +20,7 @@ Network+ (self-study) → TryHackMe (Pre Security cherry-picks + full Cyber Secu
 
 ## Progress log
 - [x] Nmap fundamentals (THM room complete)
-- [ ] Network+ course complete
+- [x] Network+ course complete
 - [ ] Cyber Security 101 path complete
 - [ ] Security+ Domains 1–5
 - [ ] SOC Level 1 path complete
