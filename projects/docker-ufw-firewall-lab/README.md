@@ -8,10 +8,10 @@ before vs after firewall rules are applied.
 ## Environment
 - Victim: Docker container (Ubuntu base) running UFW
 - Attacker: Kali Linux
-- Network: [bridge/host mode]
+- Network: bridge
 
 ## UFW Configuration
-[List exact rules - allow/deny, ports, protocols]
+check [ufw_rules](./setup/ufw-rules.sh)
 
 ## Results Summary
 | Port/Service | Before Firewall | After Firewall |
