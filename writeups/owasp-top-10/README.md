@@ -17,7 +17,6 @@ AI/LLM-integrated systems.
 - [A07 — Authentication Failures](A07-authentication-failures.md) (includes username enumeration, ffuf brute-forcing)
 - [A08 — Software or Data Integrity Failures](A08-software-data-integrity-failures.md)
 - [A09 — Logging & Alerting Failures](A09-logging-alerting-failures.md)
-- [A10 — Server-Side Request Forgery (SSRF)](A10-ssrf.md) — *supplementary, see note in file*
  
 ## Note on transparency
 Some of the practical exercises tied to these notes involved writing small
