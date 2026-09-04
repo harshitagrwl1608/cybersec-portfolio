@@ -1,12 +1,12 @@
-# [Windows Fundamentals 2] — TryHackMe
+# Windows Fundamentals 2 — TryHackMe
 
-**Path:** Cyber Security 101 — Windows and AD Fundamentals  
-**Date:** 2026-09-04  
-**Category:** Windows Fundamentals — System Administration & Monitoring
+**Path:** Cyber Security 101 — Windows and AD Fundamentals
+**Date:** 2026-09-04
+**Category:** Windows Fundamentals / System Administration & Monitoring
 
 ## Objective
 
-Learn more of the built-in Windows administration tools and understand how they can be used for troubleshooting, enumeration and security monitoring.
+Second room in the series, and this one's more about the built-in admin tools — where they live, what they're for, and why a lot of them matter just as much for defense/investigation as they do for normal troubleshooting.
 
 ## Tools used
 
@@ -17,116 +17,34 @@ Learn more of the built-in Windows administration tools and understand how they 
 - Resource Monitor
 - Command Prompt
 - Registry Editor
-- `gpresult`
+- gpresult
 
 ## Methodology
 
-- Worked through **System Configuration (`msconfig`)** and how Windows startup/services can be reviewed.
-- Explored **Computer Management**, which groups a lot of useful administrative tools in one place.
-- Looked at **Task Scheduler** and why scheduled tasks are important both for normal automation and attacker persistence.
-- Checked **Event Viewer** and the role of Windows event logs during investigation.
-- Used **Resource Monitor** to get more detail than Task Manager normally gives.
-- Reviewed local users/groups and Windows shares.
-- Looked at the **Registry** and why it contains useful configuration and security-relevant information.
-- Practised remembering where these tools are located instead of relying only on the GUI.
+This room felt like a "here's where all the good stuff is hidden" tour more than a concept-heavy one, so most of my notes ended up being per-tool.
 
-## MSConfig
+**MSConfig** (`msconfig`) — mainly a troubleshooting utility, but from a security angle the interesting part is the services/startup config, since that's exactly where persistence tends to live.
 
-```cmd
-msconfig
-```
+**Task Scheduler** is legit useful for normal automation (run at startup, at logon, on a schedule, after a specific event) but it's also a really common persistence spot for attackers, so I noted down what I'd actually check on a suspicious task — name, trigger, run-as account, the actual program/script it launches, arguments, and the executable path. Basically don't just glance at the task name and move on.
 
-MSConfig is mainly a troubleshooting utility. The useful areas for security work are the configured services and startup-related settings.
-
-## Task Scheduler
-
-Scheduled tasks can run programs:
-
-```text
-At startup
-At logon
-At a specific time
-On a schedule
-After a particular event
-```
-
-This is useful legitimately, but it also makes Task Scheduler important during persistence investigations.
-
-When looking at a suspicious task, I would check:
-
-```text
-Task name
-Trigger
-Run-as account
-Program/script
-Arguments
-Executable path
-```
-
-## Event Viewer
-
-```cmd
-eventvwr.msc
-```
-
-Important log areas:
-
-```text
-Security
-System
-Application
-```
-
-Some useful Security Event IDs:
+**Event Viewer** (`eventvwr.msc`) — Security, System, and Application logs are the main areas. Grabbed a handful of the Security event IDs that seem to come up constantly:
 
 ```text
 4624  Successful logon
 4625  Failed logon
 4672  Special privileges assigned to a new logon
-4688  Process creation (when enabled)
+4688  Process creation (if enabled)
 4720  User account created
 4728/4732  User added to a security group
 ```
 
-The important point is not memorising IDs for the sake of it. It is being able to connect an event to a user, host and action.
+Point isn't to memorize these like flashcards, it's being able to connect an event back to a specific user, host, and action when something looks off.
 
-## Computer Management
+**Computer Management** (`compmgmt.msc`) turned out to be a genuinely handy shortcut — it bundles Task Scheduler, Event Viewer, Shared Folders, Local Users and Groups, Device Manager, Performance, all in one place instead of hunting for each individually.
 
-```cmd
-compmgmt.msc
-```
+**Resource Monitor** (`resmon.exe`) gives more detail than Task Manager on CPU/memory/disk/network — good next step when something in Task Manager looks off and you want to actually see what it's touching on the network or disk.
 
-Useful sections include:
-
-```text
-Task Scheduler
-Event Viewer
-Shared Folders
-Local Users and Groups
-Device Manager
-Performance
-```
-
-This became one of the more useful "where do I find that Windows tool?" shortcuts.
-
-## Resource Monitor
-
-```cmd
-resmon.exe
-```
-
-Resource Monitor gives a more detailed view of:
-
-```text
-CPU
-Memory
-Disk
-Network
-```
-
-For example, when a process looks suspicious in Task Manager, Resource Monitor can help investigate what resources and network activity are actually associated with it.
-
-## Local users / groups
+Went through local users/groups next:
 
 ```cmd
 net user
@@ -134,49 +52,13 @@ net localgroup
 net localgroup administrators
 ```
 
-Things worth checking:
+things worth flagging here being unexpected admin accounts, stale/old accounts nobody uses anymore, and weird group membership.
 
-- unexpected administrator accounts
-- old/stale accounts
-- suspicious group membership
+**Shares** — `net share`. Admin shares (`C$`, `ADMIN$`, `IPC$`) show up with the `$` suffix. A hidden share existing isn't automatically a red flag on its own — what actually matters is who can authenticate to it and what they're allowed to do once they're in.
 
-## Windows shares
+**Registry** (`regedit.exe`) — stores Windows/app/user/hardware config across the main root keys (HKLM, HKCU, HKCR, HKU, HKCC). Definitely a spot worth knowing since persistence/config artifacts show up here a lot during investigations.
 
-```cmd
-net share
-```
-
-Administrative shares commonly use `$`, for example:
-
-```text
-C$
-ADMIN$
-IPC$
-```
-
-A hidden share is not automatically a vulnerability; the important part is who can authenticate and what permissions they have.
-
-## Registry
-
-```cmd
-regedit.exe
-```
-
-The Registry stores Windows, application, user and hardware configuration.
-
-Main root keys:
-
-```text
-HKLM
-HKCU
-HKCR
-HKU
-HKCC
-```
-
-From a security perspective, Registry locations can also contain persistence/configuration artefacts, so they are useful during investigation.
-
-## Useful commands
+Same core commands as last time plus a couple extras:
 
 ```cmd
 whoami
@@ -191,12 +73,8 @@ gpresult /r
 
 ## Detection angle (SOC-relevant)
 
-This room connects directly to endpoint monitoring.
-
-A suspicious scheduled task, new administrator account and unusual process creation are much more useful when they occur close together in the Windows logs.
-
-That is the main lesson for me: **individual events can look normal; correlated events can tell the story.**
+This room connects pretty directly to endpoint monitoring — a scheduled task, a new admin account, and an odd process creation event on their own might each look kind of normal, but stacked close together in time they start telling a story. That's basically the main lesson I took from this one: individual events can look fine in isolation, but correlated events are where the actual signal is.
 
 ## Key takeaway
 
-Windows already has a large set of tools for troubleshooting and investigation. Learning where these tools are and what evidence they expose is useful before moving on to dedicated security tooling.
+Windows already ships with a surprising amount of investigation tooling built in — Event Viewer, Task Scheduler, Computer Management, Resource Monitor. Knowing where they live and what evidence each one exposes seems like a prerequisite before I even get near dedicated SOC tooling.

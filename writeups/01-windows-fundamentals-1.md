@@ -1,92 +1,42 @@
-# [Windows Fundamentals 1] — TryHackMe
+# Windows Fundamentals 1 — TryHackMe
 
-**Path:** Cyber Security 101 — Windows and AD Fundamentals  
-**Date:** 2026-09-04  
-**Category:** Windows Fundamentals — OS Basics
+**Path:** Cyber Security 101 — Windows and AD Fundamentals
+**Date:** 2026-09-04
+**Category:** Windows Fundamentals / OS Basics
 
 ## Objective
 
-Learn the basic Windows environment, how Windows stores files, how user permissions work, and where some of the important built-in administrative/security tools are located.
+First room in the Windows track — pretty introductory, gets you comfortable navigating Windows and understanding file permissions, NTFS, and a couple of the built-in admin tools before things get more technical in the next two rooms.
 
 ## Tools used
 
 - File Explorer
 - Control Panel / Settings
 - Task Manager
-- `cmd`
-- `icacls`
-- `dir`
-- `whoami`
+- cmd
+- icacls
+- dir
+- whoami
 
 ## Methodology
 
-- Started with the Windows desktop, Start Menu, taskbar and File Explorer to get comfortable navigating the OS.
-- Looked at the Windows file system and why **NTFS** is important from a security point of view.
-- Checked file/folder permissions and how Windows uses ACLs to decide what a user can do.
-- Looked at **Alternate Data Streams (ADS)** because files can contain more than what is visible in a normal directory listing.
-- Explored **UAC**, the Control Panel and Task Manager.
-- Used basic commands such as `whoami`, `hostname`, `ipconfig`, `tasklist` and `systeminfo` for quick host/user enumeration.
-- Also noted the role of `C:\Windows\System32` and Windows environment variables.
+Started off just poking around the desktop, Start Menu, File Explorer — nothing new here if you've used Windows before, but the room ties it back to security concepts pretty quickly which is nice.
 
-## NTFS + Permissions
-
-NTFS supports permissions through ACLs. The important idea is that access is not simply "file exists = everyone can use it".
-
-Common permissions include:
-
-```text
-Read
-Write
-Execute
-Modify
-Full Control
-```
-
-I used `icacls` to inspect permissions:
+The NTFS section is where it got more interesting. Windows doesn't just say "file exists, anyone can touch it" — permissions are handled through ACLs (read, write, execute, modify, full control), and `icacls` lets you actually see who has what:
 
 ```cmd
 icacls C:\Users\Public
 ```
 
-This is useful during enumeration because a writable directory can become security-relevant depending on what files/programs use it.
+This is one of those commands that seems boring until you realize a writable directory that shouldn't be writable is basically a foothold waiting to happen, depending what runs against it.
 
-## Alternate Data Streams
+Alternate Data Streams was the part I hadn't touched before. NTFS lets a file carry hidden data attached to it, like `file.txt:hidden.txt`, and a normal `dir` won't show you that — you need `dir /r` to actually see the stream. Not inherently malicious, but definitely something worth checking during any kind of investigation since it's a decent place to stash stuff without it showing up as a second file.
 
-NTFS supports **Alternate Data Streams**, for example:
+UAC came up next — basically the thing that pops up asking "are you sure" before anything needs admin rights. Worth remembering it's a layer on top of permissions, not a replacement for them. If the account already has bad permissions, UAC alone isn't saving you.
 
-```text
-file.txt:hidden.txt
-```
+Task Manager is the usual suspects — processes, CPU/memory/disk/network, startup apps, logged in users, services. For a quick first-pass look at a machine I'd check process name, what user is running it, and whether it's eating resources it has no business eating.
 
-They can be legitimate, but from a security perspective they are worth checking because data can be stored without appearing as a normal second file.
-
-```cmd
-dir /r
-```
-
-## UAC
-
-**User Account Control (UAC)** is used to control elevation of privileges when an action requires administrator-level access.
-
-```cmd
-UserAccountControlSettings.exe
-```
-
-The main thing I took from this was that UAC is an extra protection layer around administrative actions, not a replacement for correct permissions.
-
-## Task Manager
-
-Task Manager is useful for a quick look at:
-
-- running processes
-- CPU / memory / disk / network usage
-- startup applications
-- logged-in users
-- services
-
-For a first-pass investigation, I would check the process name, the user running it and whether the process is consuming unusual resources.
-
-## Useful commands
+Closed it out with a handful of quick enumeration commands, which honestly feel like the ones I'll end up typing out of habit on every single room from here on:
 
 ```cmd
 whoami
@@ -101,12 +51,8 @@ net localgroup
 
 ## Detection angle (SOC-relevant)
 
-Windows endpoint activity leaves a lot more evidence than just the network traffic.
-
-From a SOC point of view, useful things to correlate are suspicious processes, unexpected startup items, account/group changes and unusual privilege elevation.
-
-For example, `whoami` tells me **which identity I am actually using**, while `tasklist` lets me connect that identity to what is currently running.
+Windows endpoints leave way more evidence than just network traffic — process activity, startup changes, account/group changes, privilege escalation, all of it is visible if you're looking in the right place. Small thing that stuck with me: `whoami` tells you who you actually are right now, and `tasklist` lets you tie that identity to what's actually running — putting those two together is basically step one of "does this look normal."
 
 ## Key takeaway
 
-Windows security starts with understanding the host itself — users, permissions, files, processes and built-in tools. Before doing anything more advanced, I need to be comfortable enumerating the machine and understanding what normal Windows activity looks like.
+Feels like a "know your house before you defend it" room — before touching anything more advanced, I need to be able to comfortably enumerate a Windows box and have a baseline sense of what normal looks like, otherwise nothing weird is going to stand out later.
