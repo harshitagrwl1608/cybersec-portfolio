@@ -1,141 +1,159 @@
-# Windows Fundamentals 3
+# [Windows Fundamentals 3] — TryHackMe
 
-> Source: TryHackMe --- Windows Fundamentals 3
+**Path:** Cyber Security 101 — Windows and AD Fundamentals  
+**Date:** 2026-09-04  
+**Category:** Windows Fundamentals — Security Controls
 
-## Windows Update
+## Objective
 
-Windows Update delivers operating-system updates and security patches.
+Understand the security features built into Windows and how they contribute to endpoint protection.
 
-``` text
-Vulnerability → Patch released → Test → Deploy → Verify
+## Tools used
+
+- Windows Update
+- Windows Security
+- Microsoft Defender
+- Windows Firewall
+- SmartScreen
+- Exploit Protection
+- Core Isolation / Memory Integrity
+- TPM
+- BitLocker
+- Volume Shadow Copy Service
+- PowerShell / `cmd`
+
+## Methodology
+
+- Looked at **Windows Update** and why patching is one of the basic security controls.
+- Worked through **Windows Security** and the built-in Defender protections.
+- Studied the different **firewall/network profiles** and how rules control traffic.
+- Looked at **SmartScreen** and **Exploit Protection** under App & browser control.
+- Explored **Device Security**, including Core Isolation and Memory Integrity.
+- Learnt what a **TPM** does and how it supports security features such as BitLocker.
+- Studied **BitLocker** for protection of data at rest.
+- Looked at **Volume Shadow Copy Service (VSS)** and why it matters for recovery as well as incident response.
+
+## Windows Updates
+
+A vulnerable system is still vulnerable no matter how good the rest of the security stack is.
+
+The basic process is:
+
+```text
+Vulnerability
+   ↓
+Security update
+   ↓
+Test
+   ↓
+Deploy
+   ↓
+Verify
 ```
 
-Patch management reduces exposure to known vulnerabilities while
-allowing organisations to manage compatibility and operational risk.
+The main lesson here is that patching is part of the security process, not just normal system maintenance.
 
-## Windows Security
+## Windows Security + Defender
 
-Windows Security brings together: - Virus & threat protection - Firewall
-& network protection - App & browser control - Device security - Device
-performance/health
+Windows Security brings multiple protections together, including:
 
-## Defender / Virus & Threat Protection
-
-Important features include: - Current threats - Protection history -
-Real-time protection - Cloud-delivered protection - Automatic sample
-submission
-
-These layers help detect malware and suspicious activity.
-
-## Controlled Folder Access
-
-Controlled Folder Access can restrict untrusted applications from
-modifying protected folders and is particularly useful against
-ransomware-style file modification.
-
-``` text
-Suspicious process
-      ↓
-Attempts protected-file modification
-      ↓
-Controlled Folder Access
-      ↓
-Access may be blocked
+```text
+Virus & threat protection
+Firewall & network protection
+App & browser control
+Device security
 ```
+
+Defender provides real-time protection and other detection layers.
 
 ## Firewall & Network Protection
 
-Windows Firewall applies rules according to network profiles: -
-**Domain** --- domain-connected network. - **Private** --- trusted
-network. - **Public** --- less trusted network.
+Windows Firewall uses profiles:
 
-PowerShell:
+```text
+Domain
+Private
+Public
+```
 
-``` powershell
+I also connected this to the firewall work I had already done on Windows/Linux: rules decide what traffic is allowed or blocked, so the profile matters when troubleshooting or reviewing exposure.
+
+Useful PowerShell commands:
+
+```powershell
 Get-NetFirewallProfile
 Get-NetFirewallRule
 ```
 
-Do not disable the firewall just to fix connectivity; identify the
-relevant rule/profile first.
+## SmartScreen + Exploit Protection
 
-## App & Browser Control
+**SmartScreen** helps with malicious websites, phishing, suspicious downloads and untrusted applications.
 
-Microsoft Defender SmartScreen helps protect against phishing sites,
-malicious websites, suspicious downloads and untrusted applications.
-
-Exploit Protection adds mitigations that make exploitation of vulnerable
-applications more difficult.
+**Exploit Protection** is a different layer: instead of just deciding whether content is malicious, it adds mitigations that can make exploitation harder.
 
 ## Device Security
 
-Core Isolation and Memory Integrity use virtualisation-based security to
-protect sensitive system/kernel operations.
+Core Isolation and **Memory Integrity (HVCI)** use virtualisation-based security to help protect sensitive system/kernel operations.
 
-Memory Integrity (HVCI) helps prevent untrusted kernel-mode code from
-being executed in protected contexts.
+This is an example of defence in depth — even if another protection fails, additional controls can still make exploitation harder.
 
-## TPM / Security Processor
+## TPM
 
-A Trusted Platform Module (TPM) is a hardware security component that
-can protect cryptographic keys and support secure boot measurements and
-BitLocker.
+A **Trusted Platform Module (TPM)** is a hardware security component that can protect cryptographic material and support features such as BitLocker.
 
-TPM is not itself equivalent to full-disk encryption.
+Important distinction:
+
+```text
+TPM = hardware-backed security component
+BitLocker = disk encryption feature
+```
+
+They work together, but they are not the same thing.
 
 ## BitLocker
 
-BitLocker provides full-volume encryption.
+BitLocker provides full-volume encryption to protect data at rest.
 
-``` text
-Disk data
-   ↓
+```text
+Disk
+ ↓
 BitLocker encryption
-   ↓
-Encrypted volume
-   ↓
-Unlock / recovery mechanism
-   ↓
-Accessible data
+ ↓
+Encrypted data
+ ↓
+Unlock / recovery
 ```
 
-TPM can help protect BitLocker keys and verify aspects of the boot
-environment.
+This matters especially for lost or stolen laptops because an attacker should not be able to simply remove the drive and read the contents as normal plaintext files.
 
-A recovery key should be stored securely because losing access to the
-normal unlock mechanism can otherwise prevent data recovery.
+Recovery keys are therefore important and need to be stored securely.
 
-## Volume Shadow Copy Service (VSS)
+## Volume Shadow Copy Service
 
-VSS creates point-in-time shadow copies used by Windows and backup
-software.
+VSS provides point-in-time copies that Windows and backup software can use.
 
-``` cmd
+```cmd
 vssadmin list shadows
 ```
 
-VSS can help restore previous versions and may provide useful
-investigation evidence. Attackers/ransomware may also try to delete
-shadow copies, so VSS is not a replacement for proper backups.
+From a defensive perspective, VSS can help with recovery and can sometimes provide useful investigation data.
 
-## Defensive Checklist
+At the same time, destructive malware may try to delete shadow copies, which is why VSS should not be treated as the only backup mechanism.
 
-``` text
-✓ Patch Windows
-✓ Keep Defender protection enabled
-✓ Keep firewall enabled
-✓ Enable SmartScreen where appropriate
-✓ Use exploit mitigations
-✓ Evaluate Core Isolation / Memory Integrity
-✓ Protect TPM-backed keys
-✓ Enable BitLocker on suitable endpoints
-✓ Secure recovery keys
-✓ Maintain tested backups
+## Detection angle (SOC-relevant)
+
+Windows security controls also create useful signals for defenders:
+
+```text
+Defender detections
+Firewall blocks
+Security events
+Suspicious application reputation events
+Changes to security configuration
 ```
 
-## Key Takeaway
+A SOC should not rely on one security product alone. The stronger approach is combining endpoint, identity and network telemetry.
 
-Windows security is defence in depth: patching, antivirus, firewall,
-application reputation, exploit mitigations, hardware-backed security,
-encryption and recovery each address different parts of the attack
-surface.
+## Key takeaway
+
+Windows security is layered. Patching, Defender, firewall controls, SmartScreen, exploit mitigations, hardware-backed protections, encryption and recovery all solve different parts of the problem.

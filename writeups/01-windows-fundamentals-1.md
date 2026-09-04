@@ -1,117 +1,96 @@
-# Windows Fundamentals 1
+# [Windows Fundamentals 1] — TryHackMe
 
-> Source: TryHackMe --- Windows Fundamentals 1
+**Path:** Cyber Security 101 — Windows and AD Fundamentals  
+**Date:** 2026-09-04  
+**Category:** Windows Fundamentals — OS Basics
 
-## Windows Desktop
+## Objective
 
--   Desktop: shortcuts and files.
--   Start Menu: applications, search and settings.
--   Taskbar: running/pinned applications and system tray.
--   File Explorer: browse drives, folders and files.
--   Settings / Control Panel: system configuration.
+Learn the basic Windows environment, how Windows stores files, how user permissions work, and where some of the important built-in administrative/security tools are located.
 
-## NTFS
+## Tools used
 
-NTFS (New Technology File System) is the main Windows filesystem.
-Important features include ACL permissions, ownership, auditing,
-journaling, compression and EFS encryption.
+- File Explorer
+- Control Panel / Settings
+- Task Manager
+- `cmd`
+- `icacls`
+- `dir`
+- `whoami`
 
-``` cmd
-fsutil fsinfo volumeinfo C:
-icacls C:\Users
+## Methodology
+
+- Started with the Windows desktop, Start Menu, taskbar and File Explorer to get comfortable navigating the OS.
+- Looked at the Windows file system and why **NTFS** is important from a security point of view.
+- Checked file/folder permissions and how Windows uses ACLs to decide what a user can do.
+- Looked at **Alternate Data Streams (ADS)** because files can contain more than what is visible in a normal directory listing.
+- Explored **UAC**, the Control Panel and Task Manager.
+- Used basic commands such as `whoami`, `hostname`, `ipconfig`, `tasklist` and `systeminfo` for quick host/user enumeration.
+- Also noted the role of `C:\Windows\System32` and Windows environment variables.
+
+## NTFS + Permissions
+
+NTFS supports permissions through ACLs. The important idea is that access is not simply "file exists = everyone can use it".
+
+Common permissions include:
+
+```text
+Read
+Write
+Execute
+Modify
+Full Control
 ```
 
-### NTFS vs FAT32
+I used `icacls` to inspect permissions:
 
-  Feature           NTFS        FAT32
-  ----------------- ----------- -------------------------
-  ACL permissions   Yes         Limited
-  Journaling        Yes         No
-  EFS               Yes         No
-  Large files       Supported   \~4 GB maximum per file
-
-## Windows Permissions
-
--   **Read** --- view information.
--   **Write** --- modify information.
--   **Execute** --- run a program.
--   **List folder contents** --- enumerate a directory.
--   **Modify** --- read/write plus deletion.
--   **Full control** --- broad control over the object.
-
-Use least privilege: users should receive only the access they need.
-
-``` cmd
+```cmd
 icacls C:\Users\Public
 ```
 
-## Alternate Data Streams (ADS)
+This is useful during enumeration because a writable directory can become security-relevant depending on what files/programs use it.
 
-NTFS supports named alternate data streams, for example:
+## Alternate Data Streams
 
-``` text
+NTFS supports **Alternate Data Streams**, for example:
+
+```text
 file.txt:hidden.txt
 ```
 
-ADS has legitimate uses, but attackers have historically abused it to
-hide data from normal directory listings.
+They can be legitimate, but from a security perspective they are worth checking because data can be stored without appearing as a normal second file.
 
-``` cmd
+```cmd
 dir /r
 ```
 
-## Windows`\System32`{=tex}
-
-`C:\Windows\System32` contains critical Windows executables, DLLs and
-utilities such as `cmd.exe`, `regedit.exe` and `taskmgr.exe`.
-
-On 64-bit Windows, System32 contains 64-bit system binaries; SysWOW64
-contains many 32-bit components.
-
-## Environment Variables
-
-``` cmd
-echo %WINDIR%
-echo %PATH%
-echo %TEMP%
-echo %USERNAME%
-echo %COMPUTERNAME%
-```
-
-`%WINDIR%` normally points to the Windows installation directory. The
-`PATH` variable determines where executables are searched for, so unsafe
-writable PATH locations can create security issues.
-
 ## UAC
 
-User Account Control (UAC) helps prevent applications/users from
-silently performing administrative actions.
+**User Account Control (UAC)** is used to control elevation of privileges when an action requires administrator-level access.
 
-``` cmd
+```cmd
 UserAccountControlSettings.exe
 ```
 
-UAC is an additional protection layer, not a replacement for proper
-permissions.
-
-## Control Panel
-
-Control Panel contains legacy administration interfaces for users,
-programs, networking, firewall and system settings.
+The main thing I took from this was that UAC is an extra protection layer around administrative actions, not a replacement for correct permissions.
 
 ## Task Manager
 
-Task Manager provides visibility into processes, resource usage, startup
-applications, users and services.
+Task Manager is useful for a quick look at:
 
-For security triage, check suspicious processes, high resource usage,
-unexpected startup items and which user owns a process.
+- running processes
+- CPU / memory / disk / network usage
+- startup applications
+- logged-in users
+- services
 
-## Useful Commands
+For a first-pass investigation, I would check the process name, the user running it and whether the process is consuming unusual resources.
 
-``` cmd
-hostname
+## Useful commands
+
+```cmd
 whoami
+hostname
 ipconfig
 ipconfig /all
 tasklist
@@ -120,19 +99,14 @@ net user
 net localgroup
 ```
 
-## Practical Security Checklist
+## Detection angle (SOC-relevant)
 
-1.  Identify the user with `whoami`.
-2.  Identify the host with `hostname`.
-3.  Review processes and startup items.
-4.  Check local group membership.
-5.  Inspect suspicious ACLs with `icacls`.
-6.  Check ADS with `dir /r`.
-7.  Treat UAC prompts seriously.
-8.  Avoid modifying System32 without a clear reason.
+Windows endpoint activity leaves a lot more evidence than just the network traffic.
 
-## Key Takeaway
+From a SOC point of view, useful things to correlate are suspicious processes, unexpected startup items, account/group changes and unusual privilege elevation.
 
-Windows fundamentals matter in security work because permissions,
-processes, users, filesystems and built-in utilities are common sources
-of both evidence and attack surface.
+For example, `whoami` tells me **which identity I am actually using**, while `tasklist` lets me connect that identity to what is currently running.
+
+## Key takeaway
+
+Windows security starts with understanding the host itself — users, permissions, files, processes and built-in tools. Before doing anything more advanced, I need to be comfortable enumerating the machine and understanding what normal Windows activity looks like.
