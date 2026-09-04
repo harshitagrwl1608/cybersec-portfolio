@@ -1,136 +1,32 @@
-# [Active Directory Basics] — TryHackMe
+# Active Directory Basics — TryHackMe
 
-**Path:** Cyber Security 101 — Windows and AD Fundamentals  
-**Date:** 2026-09-04  
-**Category:** Active Directory — Identity & Authentication
+**Path:** Cyber Security 101 — Windows and AD Fundamentals
+**Date:** 2026-09-04
+**Category:** Active Directory / Identity & Authentication
 
 ## Objective
 
-Understand how Active Directory is structured, how users/computers/groups are managed, how Group Policy works, and how authentication works inside a Windows domain.
+This room is basically the "why does every company run AD" room. It walks through how Windows domains are structured, how users/computers/groups get managed centrally, and how authentication actually works under the hood (Kerberos + NTLM). Goal for me was to actually understand the auth flow instead of just knowing the buzzwords.
 
 ## Tools used
 
 - Active Directory Users and Computers
-- Active Directory PowerShell module
-- `cmd`
-- `whoami`
-- `gpresult`
-- `nltest`
-- DNS tools such as `nslookup`
+- AD PowerShell module
+- cmd
+- whoami, gpresult, nltest
+- nslookup
 
 ## Methodology
 
-- Learnt why organisations use **Active Directory** to centrally manage Windows users, computers and policies.
-- Studied the role of a **Domain Controller** and how AD objects are organised.
-- Worked through **users, groups and Organizational Units (OUs)**.
-- Looked at **Group Policy** and why different OUs can be used for different policies.
-- Learnt the difference between **domains, trees and forests**.
-- Studied **trust relationships** between domains.
-- Compared **Kerberos and NTLM** authentication.
-- Filled in the main Kerberos flow: TGT request → service ticket request → ticket presented to the service.
-- Connected AD authentication to **DNS and LDAP**.
-- Looked at practical enumeration commands useful inside an authorised lab.
+I went in expecting this to be a dry "here's what AD is" room but it ended up being more useful than I thought, mostly because it forced me to actually sit down and understand Kerberos instead of just nodding along to the term.
 
-## What is Active Directory?
+Started with the basic pitch for AD — why would you centrally manage users/computers instead of configuring every machine by hand. Makes sense once you think about a company with a few hundred employees, you're not touching 300 machines individually every time someone joins or leaves. That's the whole point of a Domain Controller: it's the server holding all this together, handling logins, directory lookups, replication, and Group Policy. Also became pretty obvious why a DC is such a high value target — compromise that and you basically own the identity layer of the whole network.
 
-Active Directory is Microsoft's directory service for Windows domain networks.
+Users and groups is straightforward on paper (put people in groups, give the group permissions instead of managing per-user) but what stuck with me more was the emphasis on watching privileged groups like Domain Admins specifically. OUs are just the folders you use to organize all this and apply different policies to, e.g. keeping servers and workstations separate because they obviously need different rules.
 
-THM breaks the main AD pieces down into:
+Group Policy is where I spent a bit more time — it's genuinely one of the bigger reasons AD is powerful, since you can push password policy, firewall rules, audit settings, whatever, to a whole OU at once. Played with `gpupdate /force` and `gpresult /r` to see current applied policy.
 
-```text
-Domain Controllers
-Forests / Trees / Domains
-Users + Groups
-Trusts
-Policies
-Domain Services
-```
-
-The reason companies use it is centralised management: users and computers can be managed from the domain instead of configuring every machine independently. citeturn138336search0turn138336search1
-
-## Domain Controller
-
-A **Domain Controller (DC)** is the server providing AD DS services.
-
-It handles important functions such as:
-
-```text
-Authentication
-Directory lookups
-Group / user management
-Group Policy
-Replication
-```
-
-Because a DC is central to the domain, it is a very high-value system from a security point of view.
-
-## Users + Groups
-
-Instead of assigning permissions one user at a time:
-
-```text
-Alice
-Bob
-Carol
-   ↓
-Finance-Group
-   ↓
-File-share permission
-```
-
-Groups make access management much easier.
-
-Privileged groups are especially important to monitor, particularly groups such as:
-
-```text
-Domain Admins
-```
-
-## Organizational Units (OUs)
-
-OUs are containers used to organise objects and help apply/delegate administration and Group Policy.
-
-A sensible structure could be:
-
-```text
-corp.example
-├── Users
-├── Workstations
-├── Servers
-└── Domain Controllers
-```
-
-Keeping **Servers and Workstations in separate OUs** is useful because they usually need different policies.
-
-## Group Policy
-
-Group Policy is one of the biggest advantages of AD because administrators can centrally configure many computers/users.
-
-Examples:
-
-```text
-Password/security settings
-Firewall settings
-Audit policy
-Software configuration
-User restrictions
-```
-
-Useful commands:
-
-```cmd
-gpupdate /force
-gpresult /r
-gpresult /h report.html
-```
-
-A GPO is therefore not just an administrative convenience — permissions to modify one can have a very large security impact.
-
-## DNS + Active Directory
-
-DNS is extremely important to AD because domain members use it to locate domain services and Domain Controllers.
-
-Useful checks:
+DNS was the part I didn't expect to matter this much. Domain members literally use DNS to find the DC and other domain services, so if login/auth breaks in an AD environment, DNS is one of the first things worth checking, not something you check last. Ran a couple of basic checks:
 
 ```cmd
 ipconfig /all
@@ -138,185 +34,46 @@ nslookup dc01.corp.example
 nslookup -type=SRV _ldap._tcp.dc._msdcs.corp.example
 ```
 
-So when an AD environment has "authentication problems", DNS should be one of the first things checked.
+LDAP vs Kerberos vs DNS kept blurring together for me at first, so I ended up just writing down a dumb mental split: Kerberos does the actual authenticating, LDAP is for querying/looking things up in the directory, DNS is how everything finds everything else. Different jobs, same environment.
 
-## LDAP
+### Kerberos — the part I actually had to slow down for
 
-LDAP is used to query and work with directory information.
+Kerberos is the default auth mechanism in a Windows domain, and it's ticket-based rather than "send password every time." The KDC (which lives on the DC) has two jobs — the Authentication Service and the Ticket Granting Service.
 
-I keep the distinction like this:
+Flow, as I understand it now:
 
-```text
-Kerberos → authentication / tickets
-LDAP     → directory queries
-DNS      → locating domain services
-```
-
-These are different roles but they work together inside the same AD environment.
-
-# Kerberos Authentication
-
-Kerberos is the default authentication service for Microsoft Windows domains. THM describes it as a ticket-based system using a KDC, TGTs and service tickets. citeturn138336search8
-
-The important parts are:
-
-```text
-Client
-   |
-   v
-KDC
-├── Authentication Service (AS)
-└── Ticket Granting Service (TGS)
-```
-
-## Kerberos flow
-
-The simplified flow is:
-
-```text
 1. User logs in
-       ↓
 2. Client sends AS-REQ
-       ↓
-3. KDC returns AS-REP containing a TGT
-       ↓
-4. Client sends TGS-REQ for a particular service
-       ↓
-5. KDC returns TGS-REP containing a service ticket
-       ↓
-6. Client presents the ticket to the target service
-       ↓
-7. Service validates it
-       ↓
-8. Access is checked by authorisation
-```
+3. KDC replies with AS-REP containing a TGT
+4. Client sends a TGS-REQ when it wants to reach a specific service
+5. KDC replies with TGS-REP containing a service ticket
+6. Client hands that ticket to the target service
+7. Service checks the ticket
+8. Whether the user can actually *do* anything is a separate authorization/ACL check
 
-### 1. TGT
+The mental shortcut that finally made this click for me: the TGT basically just means "I already proved who I am to the domain," so the client doesn't need to keep re-sending the password every time it wants to hit a new service. It asks for a ticket for that specific service instead — e.g. `cifs/fileserver.corp.example` for a file share.
 
-The **Ticket Granting Ticket (TGT)** is used to request tickets for other services after the initial authentication.
+One thing I hadn't really connected before: this whole flow throws off specific, useful Windows event IDs — 4768 for a TGT request, 4769 for a TGS request, and 4624 for the actual logon on the target. Being able to trace those together is basically how you'd follow someone's authentication path across a network if you were on the defensive side.
 
-The useful mental model is:
+Also — apparently Kerberos really cares about clock sync between systems. Didn't expect a networking/NTP detail to directly affect domain login, but it does.
 
-```text
-TGT = "I have already authenticated to the domain"
-```
+**NTLM** is the older method still hanging around for compatibility — simplified, it's a challenge/response thing (server sends a challenge, client responds based on a password-derived secret, server validates). Kerberos should be preferred wherever it's supported; NTLM shows up mostly because of legacy stuff.
 
-It means the client does not need to send the user's password to every service it accesses.
+**SPNs** (Service Principal Names, e.g. `MSSQLSvc/sql01.corp.example:1433`) identify a specific service instance to Kerberos — these matter a lot when you get into service account attacks later, apparently, so worth remembering now.
 
-### 2. TGS / Service Ticket
+### Domains, trees, forests, trusts
 
-Suppose the user wants to access a file share.
+Domain = the actual security boundary (users, computers, policy). A tree is a group of domains sharing a DNS namespace. A forest can hold multiple trees sharing schema/config and a trust framework. Trusts connect domains for authentication — but a trust does **not** automatically mean full access to everything in the other domain. Auth and authorization are still separate conversations.
 
-The client asks the TGS for a ticket for that service.
-
-Example SPN:
-
-```text
-cifs/fileserver.corp.example
-```
-
-The KDC then provides the service ticket that the client presents to the target.
-
-### 3. Service Authentication
-
-The target service validates the ticket and the user's identity. Authentication tells the system **who the user is**; normal Windows authorisation/ACLs still decide **what the user can access**.
-
-## Kerberos + Security Monitoring
-
-The authentication flow also creates useful Windows/AD events.
-
-A current THM AD monitoring example maps:
-
-```text
-4768 → TGT request
-4769 → TGS request
-4624 → successful logon/session on target
-```
-
-These are useful because they let a defender follow an authentication chain through the environment. citeturn138336search7
-
-## Time Synchronisation
-
-Kerberos is sensitive to clock differences between systems.
-
-So time sync is not just an NTP/networking topic here — it directly affects domain authentication.
-
-## SPNs
-
-A **Service Principal Name (SPN)** identifies a service instance used by Kerberos.
-
-Example:
-
-```text
-MSSQLSvc/sql01.corp.example:1433
-```
-
-SPNs become particularly important when investigating service accounts and Kerberos-related authentication activity.
-
-## NTLM
-
-NTLM is an older Windows authentication method that is still present for compatibility.
-
-Simplified idea:
-
-```text
-Server → challenge
-Client → response based on password-derived secret
-Server → validates response
-```
-
-For modern AD environments, I should expect Kerberos to be preferred where it is supported, while NTLM can still appear because of legacy/compatibility scenarios. citeturn138336search8
-
-# Domains, Trees and Forests
-
-A **domain** is the main organisational/security boundary containing users, computers and policies.
-
-A **tree** is a collection of related domains sharing a contiguous DNS namespace.
-
-A **forest** can contain multiple domain trees that share the AD schema/configuration and trust framework.
-
-Simplified:
-
-```text
-Forest
-  ├── Tree
-  │    ├── Domain
-  │    └── Child Domain
-  └── Tree
-       └── Domain
-```
-
-## Trusts
-
-A trust creates an authentication relationship between domains.
-
-```text
-Domain A ←── trust ──→ Domain B
-```
-
-Important distinction:
-
-```text
-Trust
-  ≠
-Automatic permission to every resource
-```
-
-Authentication across a trust and actual resource authorisation are separate.
-
-## AD Database
-
-A Domain Controller stores the AD database at:
+Also noted where the actual AD database lives on a DC:
 
 ```text
 C:\Windows\NTDS\ntds.dit
 ```
 
-This makes DC security especially important because compromise of directory data can have consequences far beyond one workstation.
+which is basically why DC security matters so much — that one file is the whole directory.
 
-## Practical Enumeration
-
-Inside an authorised AD lab, these are useful starting commands:
+### Enumeration commands from the room (lab-only obviously)
 
 ```cmd
 whoami
@@ -331,8 +88,6 @@ gpresult /r
 nltest /dsgetdc:corp.example
 ```
 
-With the AD PowerShell module:
-
 ```powershell
 Get-ADUser -Filter *
 Get-ADComputer -Filter *
@@ -341,55 +96,14 @@ Get-ADDomain
 Get-ADForest
 ```
 
-The point is to answer basic questions quickly:
-
-```text
-Who am I?
-What machine am I on?
-Which domain am I using?
-Who are the privileged users/groups?
-Which policies apply?
-Where is the Domain Controller?
-```
+Point of all these is just answering the basic "where am I, who am I, what's around me" questions fast — who am I, what box am I on, what domain, who's privileged, what policies apply, where's the DC.
 
 ## Detection angle (SOC-relevant)
 
-AD creates a large amount of authentication and directory activity.
+AD throws off a ton of auth/directory noise all day, every day, so the useful stuff to actually watch for is failed logons, privileged account logons succeeding, TGT/TGS activity, new user creation, group membership changes (especially into anything privileged), GPO changes, and weird service account behavior.
 
-Important things to monitor include:
-
-```text
-Failed logons
-Successful privileged logons
-TGT/TGS activity
-New users
-Group membership changes
-GPO changes
-Unusual service-account behaviour
-```
-
-The main security lesson is that **identity is the centre of the Windows enterprise**. If an attacker gains control of a privileged identity, the impact can spread across many machines.
+Biggest takeaway from this section honestly wasn't a command, it was the reminder that identity is the center of the whole Windows enterprise — if someone gets a privileged account, that's not a "one machine" problem anymore, it spreads.
 
 ## Key takeaway
 
-AD is much more than "a Windows server with users". It is the identity and policy backbone of a Windows domain.
-
-The most important mental model I took from this room is:
-
-```text
-Forest
-  ↓
-Trees
-  ↓
-Domains
-  ↓
-OUs → GPOs
-  ↓
-Users / Groups / Computers
-  ↓
-Kerberos / NTLM
-  ↓
-Network Resources
-```
-
-Understanding this structure makes later AD enumeration, authentication attacks and defensive monitoring much easier.
+Went in thinking of AD as "the thing that holds the user list." Came out thinking of it more as: Forest → Trees → Domains → OUs/GPOs → Users/Groups/Computers → Kerberos/NTLM → actual resources. Once that chain is in your head, enumeration and later attacks make a lot more sense because you know what layer you're actually poking at.
