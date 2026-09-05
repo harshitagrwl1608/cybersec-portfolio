@@ -24,8 +24,6 @@ echo $SHELL
 cat /etc/shells
 ```
 
-and you can just drop into a different one by typing its name, e.g. `zsh`, if it's installed.
-
 The room covers three shells at a glance — Bash (the default workhorse, scripting-focused, has history and tab completion), Fish (friendlier syntax, autosuggestions, more "out of the box" pleasant), and Zsh (more advanced completion and customization, especially with a framework like Oh My Zsh on top). Functionally similar goals, different levels of hand-holding.
 
 Then into actual scripting. First script is the obligatory hello-world:
@@ -109,7 +107,15 @@ else
 fi
 ```
 
-Worth flagging clearly since it's an easy trap for anyone skimming this later: this is a teaching example only. Hard-coding credentials into a script like this is exactly the kind of thing you'd flag in a real code review — plaintext secrets sitting in a file anyone with read access can just `cat` open.
+![image](images/linux_scripts_03.png)
+
+this is a teaching example only. Hard-coding credentials into a script like this is exactly the kind of thing you'd flag in a real code review — plaintext secrets sitting in a file anyone with read access can just `cat` open.
+
+**a little challenge inside the rooms involved editing a script and finding the flag**
+
+![image](images/linux_scripts_01.png)
+
+![image](images/linux_scripts_02.png)
 
 ## Detection angle (SOC-relevant)
 
