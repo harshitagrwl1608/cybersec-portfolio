@@ -19,6 +19,10 @@ First room in the Command Line module — basically a tour of CMD itself: pullin
 
 Started with the basic "where am I" commands — `set` to dump environment variables (and `set PATH` if I just want that one), `ver` for the Windows version, and `systeminfo` for the fuller picture: OS build, hostname, installed updates, memory, network info all in one shot. `help` and `help dir` are handy when I forget a command's exact flags instead of tabbing over to search every time.
 
+![image](images/Windows_CMD_01.png)
+
+![image](images/Windows_CMD_02.png)
+
 Networking is where CMD actually gets useful fast. `ipconfig /all` is the one I'll be running constantly — IP, subnet, gateway, DNS servers, MAC address, DHCP status, all in one place. `ping` confirms basic reachability (ICMP echo request/reply), `tracert` shows the hop-by-hop path so I can tell *where* a connection is dying instead of just that it's dead, and `nslookup` answers DNS questions — including against a specific server if I want to rule out a bad resolver:
 
 ```cmd
@@ -27,6 +31,9 @@ nslookup example.com 1.1.1.1
 ```
 
 `netstat` rounds this out — connections and listening ports. The flag combo I'll actually remember is `-ano`: all connections, numeric addresses/ports, and the owning PID, which is the one that matters most if I'm trying to tie a weird connection back to a process.
+
+
+![image](images/Windows_CMD_03.png)
 
 File and disk side was mostly familiar ground — `cd`, `dir`, `tree` for navigation, `mkdir`/`rmdir` for directories (`rmdir /s` if it's not empty), `type` to dump a text file and `type file.txt | more` if it's long enough to need paging. `del` deletes — no undo, no confirmation by default, so double-check the target before hitting enter.
 
@@ -38,7 +45,7 @@ tasklist /FI "IMAGENAME eq sshd.exe"
 
 — then `taskkill /PID <PID>` to end something, `/F` if it's not cooperating. The workflow is basically tasklist → spot the PID → taskkill it.
 
-Last section was admin/maintenance tools: `chkdsk` for filesystem errors and bad sectors (`chkdsk C: /f` to actually fix things, needs admin and sometimes a restart), `driverquery` to list installed drivers, `sfc /scannow` to check and repair protected system files (run elevated), and `shutdown` with `/s`, `/r`, or `/a` to abort a pending one if I fat-fingered it.
+Last section was admin/maintenance tools: `chkdsk` for filesystem errors and bad sectors (`chkdsk C: /f` to actually fix things, needs admin and sometimes a restart), `driverquery` to list installed drivers, `sfc /scannow` to check and repair protected system files (run elevated), and `shutdown` with `/s`, `/r`, or `/a` to abort a pending one.
 
 ## Detection angle (SOC-relevant)
 
