@@ -105,6 +105,9 @@ sudo tcpdump -i eth0 tcp
 sudo tcpdump -i eth0 udp
 sudo tcpdump -i eth0 icmp
 ```
+![image](images/tcpdump_02.png)
+
+![image](images/tcpdump_01.png)
 
 ### By port
 
@@ -112,6 +115,8 @@ sudo tcpdump -i eth0 icmp
 sudo tcpdump -i eth0 port 53
 sudo tcpdump -i eth0 port 443
 ```
+![image](images/tcpdump_04.png)
+
 
 Source/destination port:
 
@@ -125,6 +130,7 @@ sudo tcpdump -i eth0 dst port 80
 ```bash
 sudo tcpdump -i eth0 host 192.168.1.10
 ```
+![image](images/tcpdump_03.png)
 
 Only source:
 
