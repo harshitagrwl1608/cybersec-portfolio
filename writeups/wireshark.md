@@ -25,6 +25,7 @@ Wi-Fi
 Loopback
 VPN/tunnel interfaces
 ```
+![image](images/wireshark_01.png)
 
 ### Main areas of the interface
 
@@ -160,6 +161,7 @@ icmp
 arp
 tls
 ```
+![image](images/wireshark_03.png)
 
 ### Port filters
 
@@ -183,6 +185,7 @@ ip.dst == 192.168.1.10
 ```text
 ip.addr == 192.168.1.10 && tcp.port == 443
 ```
+![image](images/wireshark_04.png)
 
 OR:
 
@@ -374,6 +377,8 @@ Examples of conditions may include:
 - Other protocol anomalies
 
 These are **hints**, not proof of an attack.
+
+![image](images/wireshark_02.png)
 
 ### Packet colouring
 
