@@ -29,12 +29,17 @@ john --show hash.txt                       # display recovered passwords
 john --format=<format> hash.txt            # force a specific hash format
 john --list=formats                        # list supported formats
 ```
-
+![images](images/John_Basics_03.png)
+ 
 ### Automatic Format Detection
 John can often auto-identify a hash format, but this isn't always
 reliable — a sensible workflow is: identify the format (using dedicated
 hash-ID tools if ambiguous) → confirm the correct John format string →
 run the wordlist/rules attack.
+
+![images](images/John_Basics_02.png)
+
+![images](images/John_Basics_01.png)
 
 ### Wordlists
 ```bash
@@ -75,6 +80,7 @@ zip2john protected.zip > ziphash.txt
 john --wordlist=wordlist.txt ziphash.txt
 john --show ziphash.txt
 ```
+![images](images/John_Basics_05.png)
 
 ### RAR Archives
 ```bash
@@ -91,6 +97,8 @@ john --show sshhash.txt
 ```
 The exact converter command/package name can vary by distro.
 
+![images](images/John_Basics_06.png)
+
 ### Windows Password Hashes
 ```bash
 john --format=NT hash.txt
@@ -100,6 +108,8 @@ string from memory — confirm with `john --list=formats` on the installed
 version. (Tools like `mimikatz` are commonly referenced for *obtaining*
 Windows credential material in the first place — strictly authorized-lab
 use only.)
+
+![images](images/John_Basics_04.png)
 
 ### GPU vs CPU
 GPU-oriented cracking is extremely fast for many hash types; John can use
@@ -120,8 +130,7 @@ writeup) specifically exist to blunt the GPU-parallelism advantage.
 - **Repeated authentication failures against a hash/credential store** —
   the network-facing equivalent of an offline John attack is an online
   brute-force, which is exactly what account lockout policies and SIEM
-  brute-force detection rules are designed to catch (ties back to the A07
-  Authentication Failures notes elsewhere in this repo).
+  brute-force detection rules are designed to catch (ties back to the A07).
 - **Presence of tools like John, hashcat, mimikatz, or converted hash
   files (`*.john`, `ntds.dit` dumps)** on an endpoint is a strong
   post-compromise indicator worth alerting on in an EDR/SIEM rule — these
