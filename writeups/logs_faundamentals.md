@@ -121,6 +121,9 @@ grep 'pattern' access.log   # search
 grep -i 'pattern' access.log  # case-insensitive search
 grep -n 'pattern' access.log  # show line numbers
 ```
+![image](images/log_faundamentals.png)
+
+![image](images/log_faundamentals_01.png)
 
 **Filtering by HTTP method / URL / IP:**
 ```bash
@@ -132,6 +135,7 @@ grep '172.16.0.1' access.log                        # by IP
 grep '172.16.0.1' access.log | grep '"POST '        # IP + method
 grep '172.16.0.1' access.log | grep '"POST ' | tail -n 1  # IP + method + last event
 ```
+![image](images/log_faundamentals_02.png)
 
 **Combining log files:**
 ```bash
