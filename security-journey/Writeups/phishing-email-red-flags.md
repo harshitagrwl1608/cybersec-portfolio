@@ -20,16 +20,12 @@ Annotate three red flags in a real phishing email: sender-domain mismatch, urgen
 
 ### Screenshot / evidence
 
-!(image)[./screenshots/phishing_mail_01.png]
+![image](./screenshots/phishing_mail_01.png)
 
 ### Annotation checklist
 - **Red flag 1 — Sender domain mismatch:** sender's address does not seem to be from microsoft
 - **Red flag 2 — Urgency:** Only gave 24 hours
 - **Red flag 3 — Hover-link mismatch:** masked link to a possible malicious website
-
-```text
-No commands required.
-```
 
 ## Detection angle (SOC-relevant)
 A SOC may correlate sender-domain anomalies, malicious or newly observed URLs, email authentication failures, and user-reported phishing messages. The link destination and sender-domain evidence can be useful indicators during triage.
