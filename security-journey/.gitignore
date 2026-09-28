@@ -1,0 +1,16 @@
+# Raw captures contain private network traffic
+*.pcap
+*.pcapng
+*.cap
+
+# Secrets / exports
+*.kdbx
+*.csv
+.env
+*.pem
+*.key
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
