@@ -29,24 +29,24 @@ Saving results: -oN (normal), -oX (XML), -oA (all formats at once)
 
 **Service/OS detection output**
 
-![Service/OS detection output](../images/nmap_room_04_01.png)
+![Service/OS detection output](../../images/writeups/nmap_room_04_01.png)
 
 **OS detection output**
 
-![OS detection output](../images/nmap_room_04_02.png)
+![OS detection output](../../images/writeups/nmap_room_04_02.png)
 
 **traceroute output**
 
-![traceroute output](../images/nmap_room_04_03.png)
+![traceroute output](../../images/writeups/nmap_room_04_03.png)
 
 **NSE default scripts output**
 
-![NSE default scripts output](../images/nmap_room_04_04.png)
-![NSE default scripts output](../images/nmap_room_04_05.png)
+![NSE default scripts output](../../images/writeups/nmap_room_04_04.png)
+![NSE default scripts output](../../images/writeups/nmap_room_04_05.png)
 
 **NSE exploit script output**
 
-![NSE exploit script output](../images/nmap_room_04_06.png)
+![NSE exploit script output](../../images/writeups/nmap_room_04_06.png)
 
 ## Detection angle (SOC-relevant)
 This is the noisiest room from a defender's view. Version/OS probing plus 
