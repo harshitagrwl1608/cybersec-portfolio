@@ -22,7 +22,7 @@ same network could learn.
 ```bash
 ip a
 ```
-![image](../images/nmap_home_lab_02.png)
+![image](../../images/writeups/nmap_home_lab_02.png)
  
 Confirmed the scanning host was on `wlan0`, assigned an address in the
 `192.168.X.0/24` range — this is the subnet targeted for the rest of the scan.
@@ -31,7 +31,7 @@ Confirmed the scanning host was on `wlan0`, assigned an address in the
 ```bash
 sudo nmap -sn 192.168.X.0/24
 ```
-![image](../images/nmap_home_lab_01.png)
+![image](../../images/writeups/nmap_home_lab_01.png)
  
 **Findings:**
 7 hosts responded out of 256 addresses scanned, in under 4 seconds. Based on
@@ -48,9 +48,9 @@ MAC vendor prefixes:
 ```bash
 sudo nmap -sV -O 192.168.X.0/24
 ```
-![image](../images/nmap_home_lab_03.png)
-![image](../images/nmap_home_lab_04.png)
-![image](../images/nmap_home_lab_05.png)
+![image](../../images/writeups/nmap_home_lab_03.png)
+![image](../../images/writeups/nmap_home_lab_04.png)
+![image](../../images/writeups/nmap_home_lab_05.png)
  
 This took ~411 seconds and returned detailed results for 6 of the 7 hosts
 found in the ping sweep (one dropped off — possibly a mobile device that
