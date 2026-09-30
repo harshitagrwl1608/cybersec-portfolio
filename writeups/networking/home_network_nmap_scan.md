@@ -68,14 +68,16 @@ went idle/disconnected between scans).
 | 8443/tcp | open | ssl/https-alt | — |
 | 2869, 8002, 8200/tcp | closed | — | — |
  
-OS fingerprinting failed ("no OS matches for host") since Nmap needs at
-least one definitively closed port alongside an open one for a reliable
-signature — the router's port state mix wasn't clean enough to confirm.
+OS fingerprinting failed ("no OS matches for host"). Nmap OS detection is
+more effective when it can observe at least one open and one closed TCP
+port, but that condition is not an absolute requirement for Nmap to try
+OS detection. In this scan, the returned fingerprint simply was not a
+good enough match to report an OS with confidence.
  
 **Device with Intel NIC:**
 Only one open port found — `2968/tcp`, service unrecognized ("enpp?").
-Everything else filtered. OS detection unreliable for the same reason as
-above (no clean open+closed port pair).
+Everything else filtered. OS detection was unreliable; the available responses did not produce a
+confident OS match.
  
 **Apple device:**
 ```
@@ -85,9 +87,10 @@ Device type: phone
 Running: Apple iOS 15.X
 OS details: Apple iOS 15.0 - 15.6
 ```
-Port `62078` is a well-known Apple-specific port (`lockdownd`, used for
-iOS device sync/pairing) — this is a strong, recognizable fingerprint that
-correctly identified the device as an iPhone without needing a manual guess.
+Port `62078` is associated with Apple's device-management/pairing
+services in common service databases, and Nmap reported the host as an
+Apple iOS device. Treat that combination as supporting evidence rather
+than proof that one port alone uniquely identifies an iPhone.
  
 **Remaining hosts (2–3 devices):**
 Returned "all 1000 scanned ports filtered (no-response)" — fully locked
@@ -99,14 +102,14 @@ down from a port-scan perspective, no usable service fingerprint at all.
   proxy-like service on 8080 with a banner Nmap couldn't classify. UPnP in
   particular is a known soft spot on consumer routers since it can be abused
   to auto-open port forwards without authentication.
-- Two closed-vs-filtered mismatches on the router prevented OS fingerprinting
-  — not a security issue by itself, but it shows Nmap's OS detection is
-  fragile against inconsistently configured firewalls, which cuts both ways
-  (harder for me to fingerprint, but also harder for an actual attacker).
-- The Apple device's identification via port 62078 is a good reminder that
-  **you don't need an open "juicy" port to be fingerprinted** — a single
-  vendor-specific service port was enough to confirm device type and OS
-  version range with no guessing involved.
+- The router did not produce a sufficiently strong OS fingerprint. Firewall
+  filtering, NAT, packet loss, and the limited set of responsive ports can
+  all affect remote OS fingerprinting, so a failed fingerprint should not
+  be treated as evidence that the device cannot be identified by other means.
+- The Apple device result is a good reminder that **device fingerprinting
+  can use multiple signals** — service behavior, port usage, TCP/IP
+  responses, and MAC-vendor data can all contribute. A single port or MAC
+  vendor should be treated as evidence, not absolute identification.
 - Didn't attempt to access the router's admin panel or test default
   credentials — this exercise was about visibility, not exploitation.
 ## Detection angle (SOC-relevant)
