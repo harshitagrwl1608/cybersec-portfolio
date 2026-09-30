@@ -20,7 +20,7 @@ Annotate three red flags in a real phishing email: sender-domain mismatch, urgen
 
 ### Screenshot / evidence
 
-![image](./screenshots/phishing_mail_01.png)
+![image](../../images/security-journey/phishing_mail_01.png)
 
 ### Annotation checklist
 - **Red flag 1 — Sender domain mismatch:** sender's address does not seem to be from microsoft

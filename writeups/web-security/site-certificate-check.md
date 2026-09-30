@@ -42,11 +42,11 @@ Inspect a website certificate and record its issuer, expiry, and signature algor
 
 > The screenshots used for this check show the certificate details above.
 
-![image](./screenshots/certificate_01.png)
+![image](../../images/security-journey/certificate_01.png)
 
-![image](./screenshots/certificate_02.png)
+![image](../../images/security-journey/certificate_02.png)
 
-![image](./screenshots/certificate_03.png)
+![image](../../images/security-journey/certificate_03.png)
 
 ## Detection angle (SOC-relevant)
 Certificate monitoring can surface expired certificates, unexpected issuers, weak/deprecated signature algorithms, hostname mismatches, or certificate changes that require investigation. Relevant telemetry can come from browser/security logs, TLS inspection, certificate-monitoring systems, or proxy logs.

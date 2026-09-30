@@ -28,7 +28,7 @@ Tests device availability using ICMP packets. The notes also mention that ICMP m
 ping -c 4 example.com
 ```
 
-![Ping output](./screenshots/cli_tools_01.png)
+![Ping output](../../images/security-journey/cli_tools_01.png)
 
 ---
 
@@ -39,7 +39,7 @@ Maps the route taken by a packet toward a host. It uses TTL expiry to reveal hop
 traceroute example.com
 ```
 
-![Traceroute output](./screenshots/cli_tools_02.png)
+![Traceroute output](../../images/security-journey/cli_tools_02.png)
 
 ---
 
@@ -52,7 +52,7 @@ dig example.com
 dig example.com +short
 ```
 
-![nslookup and basic dig output](./screenshots/cli_tools_03.png)
+![nslookup and basic dig output](../../images/security-journey/cli_tools_03.png)
 
 #### `dig` — MX record
 
@@ -60,7 +60,7 @@ dig example.com +short
 dig example.com MX
 ```
 
-![dig MX output](./screenshots/cli_tools_04.png)
+![dig MX output](../../images/security-journey/cli_tools_04.png)
 
 #### `dig` — NS record
 
@@ -68,7 +68,7 @@ dig example.com MX
 dig example.com NS
 ```
 
-![dig NS output](./screenshots/cli_tools_05.png)
+![dig NS output](../../images/security-journey/cli_tools_05.png)
 
 #### `dig` — query a specific DNS server
 The notes show forcing a DNS lookup through Google DNS so the DNS traffic can be observed on port 53.
@@ -77,7 +77,7 @@ The notes show forcing a DNS lookup through Google DNS so the DNS traffic can be
 dig @8.8.8.8 example.com
 ```
 
-![dig using 8.8.8.8](./screenshots/cli_tools_07.png)
+![dig using 8.8.8.8](../../images/security-journey/cli_tools_07.png)
 
 ---
 
@@ -88,7 +88,7 @@ Captures packets from the command line. The notes mention viewing/saving capture
 sudo tcpdump -i any -n -c 10 port 53
 ```
 
-![tcpdump output](./screenshots/cli_tools_06.png)
+![tcpdump output](../../images/security-journey/cli_tools_06.png)
 
 ---
 
@@ -103,7 +103,7 @@ Options noted:
 - `-a` → all active connections
 - `-n` → does not resolve names
 
-![netstat output](./screenshots/cli_tools_09.png)
+![netstat output](../../images/security-journey/cli_tools_09.png)
 
 ---
 
@@ -114,7 +114,7 @@ Used to inspect open ports and network connections on the machine. The notes des
 ss -tulpn
 ```
 
-![ss output](./screenshots/cli_tools_08.png)
+![ss output](../../images/security-journey/cli_tools_08.png)
 
 ---
 
