@@ -29,7 +29,7 @@ john --show hash.txt                       # display recovered passwords
 john --format=<format> hash.txt            # force a specific hash format
 john --list=formats                        # list supported formats
 ```
-![images](images/John_Basics_03.png)
+![images](../images/John_Basics_03.png)
  
 ### Automatic Format Detection
 John can often auto-identify a hash format, but this isn't always
@@ -37,9 +37,9 @@ reliable — a sensible workflow is: identify the format (using dedicated
 hash-ID tools if ambiguous) → confirm the correct John format string →
 run the wordlist/rules attack.
 
-![images](images/John_Basics_02.png)
+![images](../images/John_Basics_02.png)
 
-![images](images/John_Basics_01.png)
+![images](../images/John_Basics_01.png)
 
 ### Wordlists
 ```bash
@@ -80,7 +80,7 @@ zip2john protected.zip > ziphash.txt
 john --wordlist=wordlist.txt ziphash.txt
 john --show ziphash.txt
 ```
-![images](images/John_Basics_05.png)
+![images](../images/John_Basics_05.png)
 
 ### RAR Archives
 ```bash
@@ -97,7 +97,7 @@ john --show sshhash.txt
 ```
 The exact converter command/package name can vary by distro.
 
-![images](images/John_Basics_06.png)
+![images](../images/John_Basics_06.png)
 
 ### Windows Password Hashes
 ```bash
@@ -109,7 +109,7 @@ version. (Tools like `mimikatz` are commonly referenced for *obtaining*
 Windows credential material in the first place — strictly authorized-lab
 use only.)
 
-![images](images/John_Basics_04.png)
+![images](../images/John_Basics_04.png)
 
 ### GPU vs CPU
 GPU-oriented cracking is extremely fast for many hash types; John can use
