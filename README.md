@@ -43,6 +43,3 @@ This repository is organized as a portfolio and learning record. Notes are inten
 
 See [ROADMAP.md](ROADMAP.md).
 
-## Documentation standards
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
