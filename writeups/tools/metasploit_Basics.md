@@ -49,9 +49,9 @@ show auxiliary        # list auxiliary modules
 show post             # list post modules
 ```
 
-![image](images/metasploit_01.png)
+![image](../images/metasploit_01.png)
 
-![image](images/metasploit_01.png)
+![image](../images/metasploit_01.png)
 
 
 It behaves like a shell in some ways (`ls` works, tab completion works)
@@ -80,9 +80,9 @@ set <OPTION> <VALUE>     # configure it
 unset <OPTION>           # clear one option
 unset all                # clear everything
 ```
-![image](images/metasploit_03.png)
+![image](../images/metasploit_03.png)
 
-![image](images/metasploit_04.png)
+![image](../images/metasploit_04.png)
 
 Search results come with a **rank** — a rough reliability signal, roughly
 `excellent > great > good > normal > average > low > manual`. Worth
@@ -96,7 +96,7 @@ RPORT     target port
 PAYLOAD   which payload to use
 SESSION   existing session, for modules that need one
 ```
-![image](images/metasploit_05.png)
+![image](../images/metasploit_05.png)
 
 Always confirm exact option names with `show options` rather than
 assuming — they vary per module.
