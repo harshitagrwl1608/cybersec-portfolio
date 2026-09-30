@@ -27,8 +27,8 @@ Learnt about Different types of TCP flags- URG,ACK,FIN,SYN,PSH,RST
 role of scan timings -T{0-5} (0-slowest and 5-insanely fast)
 Set number of parallel probe requests
 
-![TCP connect scan output](images/nmap_room_02_01.png)
-![TCP connect scan output](images/nmap_room_02_02.png)
+![TCP connect scan output](../images/nmap_room_02_01.png)
+![TCP connect scan output](../images/nmap_room_02_02.png)
 
 ## Detection angle (SOC-relevant)
 SYN scans that never complete the handshake are a classic firewall/IDS 
