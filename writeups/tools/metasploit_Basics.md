@@ -51,8 +51,6 @@ show post             # list post modules
 
 ![image](../images/metasploit_01.png)
 
-![image](../images/metasploit_01.png)
-
 
 It behaves like a shell in some ways (`ls` works, tab completion works)
 but it isn't a full shell replacement — don't expect normal output
