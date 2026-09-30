@@ -23,9 +23,9 @@ Cmdlets follow a Verb-Noun pattern — `Get-Content`, `Set-Location`, `Get-Proce
 
 If I don't know the exact cmdlet I want, `Get-Command` finds it — `Get-Command *process*` narrows by keyword. `Get-Help` is the docs, and it actually gets useful with `-Detailed`, `-Examples`, or `-Full` depending how deep I need to go. Aliases (`Get-Alias`) are the shortcuts that let old CMD/Linux muscle memory keep working — `dir` maps to `Get-ChildItem`, `cd` maps to `Set-Location` — good for typing fast interactively, but the room's advice to spell out full cmdlet names in actual scripts makes sense; a script that reads `dir` isn't obviously self-documenting to someone else later.
 
-![image](../images/Windows_PowerShell_01.png)
+![image](../../images/writeups/Windows_PowerShell_01.png)
 
-![image](../images/Windows_PowerShell_02.png)
+![image](../../images/writeups/Windows_PowerShell_02.png)
 
 File-system navigation is basically CMD's commands with PowerShell names — `Get-ChildItem` (list), `Set-Location` (cd), `New-Item` (create file or folder depending on `-ItemType`), `Remove-Item`, `Copy-Item`, `Move-Item`, `Get-Content` (read a file). Nothing conceptually new here, just relearning the noun.
 
@@ -37,7 +37,7 @@ Get-ChildItem | Where-Object Extension -eq ".txt"
 Get-Process | Select-Object Name, Id
 ```
 
-![image](../images/Windows_PowerShell_04.png)
+![image](../../images/writeups/Windows_PowerShell_04.png)
 
 `Where-Object` filters using comparison operators (`-eq`, `-ne`, `-gt`, `-ge`, `-lt`, `-le`, `-like`), and `Select-Object` trims the output down to just the properties I actually care about, or grabs the first N results. `Select-String` is basically PowerShell's version of grep — pattern search across text.
 
@@ -56,7 +56,7 @@ Last stop was Alternate Data Streams again, this time from the PowerShell side �
 One thing I found interesting was how simple linux commands were running smoothly without errors in a windows powershell.
 On investigation, I found existence of aliases which are in simple terms short forms for cmdlets in built into windows powershell for easy usage bu unix-type OS users.
 
-![image](../images/Windows_PowerShell_03.png)
+![image](../../images/writeups/Windows_PowerShell_03.png)
 
 ## Detection angle (SOC-relevant)
 
