@@ -25,7 +25,7 @@ Input       →  Output
   contents)
 - **Output** — the result after your recipe runs
 
-![image](../images/cyberchef_01.png)
+![image](../../images/writeups/cyberchef_01.png)
 
 Basic loop: paste into Input → drag an Operation into Recipe → check
 Output → adjust/add more operations → repeat.
@@ -52,7 +52,7 @@ Caesar shift of 13. `HELLO → URYYB`, and running it again gets you back
 to `HELLO` — it's its own inverse. Purely obfuscation, breaks in about
 two seconds against anyone who knows what ROT13 is.
 
-![image](../images/cyberchef_02.png)
+![image](../../images/writeups/cyberchef_02.png)
 
 **None of the above are encryption.** They're representations/encodings
 — reversible by anyone, no key required. Don't let "it's encoded" get
@@ -64,9 +64,9 @@ Pull structured patterns out of a wall of text:
 - **Extract URLs**
 - **Extract Emails**
 
-![image](../images/cyberchef_03.png)
+![image](../../images/writeups/cyberchef_03.png)
 
-![image](../images/cyberchef_04.png)
+![image](../../images/writeups/cyberchef_04.png)
 
 
 These are the ones that actually save real time during log analysis or a
