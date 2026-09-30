@@ -47,8 +47,6 @@ flowchart TD
     I --> J["Worked — resolved"]
 ```
 
-See [`FLOWCHART.md`](FLOWCHART.md) for the expanded practical version.
-
 ## 7-Step Methodology
 
 | Step | Purpose | Key actions |
@@ -158,7 +156,6 @@ Network troubleshooting is also useful in security operations because a structur
 ```text
 network-troubleshooting-methodology/
 ├── README.md
-├── FLOWCHART.md
 ├── .gitignore
 ├── docs/
 │   ├── methodology.md
