@@ -107,15 +107,15 @@ else
 fi
 ```
 
-![image](images/linux_scripts_03.png)
+![image](../images/linux_scripts_03.png)
 
 this is a teaching example only. Hard-coding credentials into a script like this is exactly the kind of thing you'd flag in a real code review — plaintext secrets sitting in a file anyone with read access can just `cat` open.
 
 **a little challenge inside the rooms involved editing a script and finding the flag**
 
-![image](images/linux_scripts_01.png)
+![image](../images/linux_scripts_01.png)
 
-![image](images/linux_scripts_02.png)
+![image](../images/linux_scripts_02.png)
 
 ## Detection angle (SOC-relevant)
 
