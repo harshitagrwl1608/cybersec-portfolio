@@ -20,19 +20,19 @@ and their built-in insecurities — mainly cleartext transmission.
 
 **HTTP request using telnet**
 
-![HTTP request using telnet](../images/Network_Reconnaissance_03_01.png)
+![HTTP request using telnet](../../images/writeups/Network_Reconnaissance_03_01.png)
 
 **FTP request using telnet**
 
-![FTP request using telnet](../images/Network_Reconnaissance_03_02.png)
+![FTP request using telnet](../../images/writeups/Network_Reconnaissance_03_02.png)
 
 **SMTP request using telnet**
 
-![SMTP request using telnet](../images/Network_Reconnaissance_03_03.png)
+![SMTP request using telnet](../../images/writeups/Network_Reconnaissance_03_03.png)
 
 **POP3 Request using telnet**
 
-![POP3 request using telnet](../images/Network_Reconnaissance_03_04.png)
+![POP3 request using telnet](../../images/writeups/Network_Reconnaissance_03_04.png)
 
 
 ## Detection angle (SOC-relevant)
