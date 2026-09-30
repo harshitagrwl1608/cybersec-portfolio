@@ -19,7 +19,6 @@ This repository is organized as a portfolio and learning record. Notes are inten
 | `incident-reports/` | Incident-response reports and templates |
 | `cheatsheets/` | Concise command and protocol references |
 | `images/` | Screenshots/evidence retained for writeups and reference |
-| `scripts/` | Repository validation and future security tooling |
 
 ## Highlights
 
