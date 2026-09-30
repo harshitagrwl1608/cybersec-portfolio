@@ -1,0 +1,22 @@
+title: Descriptive Detection Name
+id: generate-a-uuid-here
+status: experimental
+description: >
+  What this rule detects and why it matters.
+author: Harshit
+date: YYYY-MM-DD
+references:
+  - source or lab reference
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    EventID: 0000
+  condition: selection
+falsepositives:
+  - Legitimate administrative activity
+level: medium
+tags:
+  - attack.credential_access
+  - attack.t1110

@@ -1,34 +1,45 @@
-# Cybersecurity Portfolio — SOC Analyst Track
+# Cybersecurity Portfolio — SOC / Blue-Team Track
 
-B.Tech IT student (JC Bose University of Science and Technology, YMCA), self-studying toward CompTIA Security+ (SY0-701)
-building hands-on SOC/blue-team skills alongside coursework. This repo tracks detection rules, room
-writeups, and small projects — not a raw dump of study notes.
+B.Tech IT student at **J.C. Bose University of Science and Technology, YMCA, Faridabad**, building practical cybersecurity skills through networking, Linux, security fundamentals, TryHackMe labs, detection engineering, incident response and small security projects.
 
-## Study path
-Network+ (self-study) → TryHackMe (Pre Security cherry-picks + full Cyber Security 101 + SOC Level 1) → Security+ (SY0-701)
+This repository is organized as a portfolio and learning record. Notes are intended to stand on their own; source images are retained separately for reference.
 
-## Structure
+## Learning path
 
-| Folder | What's in it |
+**Networking → Linux → TryHackMe → Security+ → SOC / Detection Engineering**
+
+## Repository structure
+
+| Folder | Purpose |
 |---|---|
-| `notes/` | Cleaned-up topic notes (networking, domains 1–5) — distilled from daily study, not raw dumps |
-| `sigma-rules/` | Sigma detection rules with a description of what each detects and why |
-| `writeups/` | TryHackMe room writeups — methodology and detection angle, not flag walkthroughs |
-| `cheatsheets/` | Quick-reference sheets (ports/protocols, netcat, commands) |
-| `projects/` | Small standalone builds (network anomaly detector, etc.) |
-| `incident-reports/` | Full incident reports — timeline, IOCs, escalation |
-| `security-journey/` | Full journey to obtaining security+ including its separate notes and writeups folder  |
+| `notes/` | Standalone learning notes for networking, Linux and Security+ |
+| `writeups/` | Hands-on labs, TryHackMe writeups and focused technical exercises |
+| `projects/` | Reproducible security labs and small builds |
+| `detections/` | Detection content, separated by detection technology |
+| `incident-reports/` | Incident-response reports and templates |
+| `cheatsheets/` | Concise command and protocol references |
+| `images/` | Screenshots/evidence retained for writeups and reference |
 
-## Progress log
-- [x] Nmap fundamentals (THM room complete)
-- [x] Network+ course complete
-- [x] Cyber Security 101 path complete (for security part)
-- [x] Mock Incident Report 
-- [ ] Security+ Domains 1–5
-- [ ] SOC Level 1 path complete
-- [ ] 2 Sigma rules published + tested
-- [ ] 1 full incident report published
+## Highlights
 
-## Note on TryHackMe content
-Writeups here describe methodology and reasoning, not flags/answers, in line with THM's terms.
-Screenshots are cropped/redacted to exclude flag values.
+- Nmap host discovery, port scanning, service enumeration and OS detection
+- Network troubleshooting and protocol fundamentals
+- Linux command-line and filesystem/security concepts
+- Windows and Active Directory fundamentals
+- SIEM, log analysis, IDS and incident-response concepts
+- OWASP web-security study notes and practical exercises
+- UFW/Docker firewall testing lab
+- Detection-rule development and MITRE ATT&CK mapping
+
+## Documentation principles
+
+- **Evidence over claims:** practical results are distinguished from conceptual examples.
+- **Authorized testing only:** offensive-security material is intended for labs, CTFs and systems where testing is explicitly permitted.
+- **Standalone notes:** a topic file should contain enough explanation to understand the topic without repeatedly consulting source screenshots.
+- **Traceability:** original notebook/source images are retained separately when useful for verification.
+- **No secrets:** public writeups use sanitized/redacted addresses, credentials, flags and personal data.
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md).
+

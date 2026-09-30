@@ -1,12 +1,11 @@
 # Notes
 
-Distilled, cleaned-up notes — pushed weekly (Sunday review days per roadmap), not daily.
-Keep raw/messy notes in your register; only push the cleaned version here.
+Standalone learning notes organized by subject.
 
-Suggested structure as you progress:
-- `01-networking/`
-- `02-domain1-security-concepts/`
-- `03-domain2-threats-vulnerabilities/`
-- `04-domain3-architecture/`
-- `05-domain4-operations/`
-- `06-domain5-governance/`
+## Sections
+
+- [Networking](networking/README.md)
+- [Linux](linux/README.md)
+- [Security+](security-plus/README.md)
+
+Original notebook/page images are retained inside the relevant subject directory for traceability. They are reference material only; the topic notes are written to stand on their own.
