@@ -46,9 +46,9 @@ sudo tcpdump -i eth0 udp
 sudo tcpdump -i eth0 icmp
 ```
 
-![Filtering by protocol](../images/tcpdump_02.png)
+![Filtering by protocol](../../images/writeups/tcpdump_02.png)
 
-![Protocol filter output](../images/tcpdump_01.png)
+![Protocol filter output](../../images/writeups/tcpdump_01.png)
 
 By port, optionally narrowed to just source or destination:
 
@@ -58,7 +58,7 @@ sudo tcpdump -i eth0 src port 443
 sudo tcpdump -i eth0 dst port 80
 ```
 
-![Filtering by port](../images/tcpdump_04.png)
+![Filtering by port](../../images/writeups/tcpdump_04.png)
 
 By host/IP, same source/destination split available:
 
@@ -67,7 +67,7 @@ sudo tcpdump -i eth0 host 192.168.1.10
 sudo tcpdump -i eth0 src host 192.168.1.10
 ```
 
-![Filtering by host](../images/tcpdump_03.png)
+![Filtering by host](../../images/writeups/tcpdump_03.png)
 
 Then logical operators to combine conditions — `and`, `or`, `not`:
 
