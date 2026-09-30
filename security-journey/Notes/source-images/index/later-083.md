@@ -1,0 +1,8 @@
+# later-083.jpg
+
+- **Combined page:** 109
+- **Source set:** Later 116-page PDF
+- **Source page:** 83
+- **Topic:** Cloud-Specific & Supply-Chain Vulnerabilities
+- **Topic file:** `topics/43-cloud-supply-chain.md`
+- **Reference image:** [later-116/page-083.jpg](../later-116/page-083.jpg)

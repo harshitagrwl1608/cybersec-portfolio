@@ -6,7 +6,7 @@ Hands-on notes, labs and write-ups while working toward **CompTIA Security+ (SY0
 
 | Folder | What's inside |
 | --- | --- |
-| [`notes/`](notes/) | [Glossary](notes/glossary.md) and [mistakes log](notes/mistakes-log.md) |
+| [`notes/`](notes/) | security+ notes |
 | [`incident-reports/`](incident-reports/) | Incident report template (real reports coming) |
 | [`Writeups/`](Writeups/) | Just a writeup of what I did |
 
