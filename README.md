@@ -1,6 +1,6 @@
 # Cybersecurity Portfolio — SOC Analyst Track
 
-B.Tech IT student (YMCA University), self-studying toward CompTIA Security+ (SY0-701)
+B.Tech IT student (JC Bose University of Science and Technology, YMCA), self-studying toward CompTIA Security+ (SY0-701)
 building hands-on SOC/blue-team skills alongside coursework. This repo tracks detection rules, room
 writeups, and small projects — not a raw dump of study notes.
 
@@ -17,6 +17,7 @@ Network+ (self-study) → TryHackMe (Pre Security cherry-picks + full Cyber Secu
 | `cheatsheets/` | Quick-reference sheets (ports/protocols, netcat, commands) |
 | `projects/` | Small standalone builds (network anomaly detector, etc.) |
 | `incident-reports/` | Full incident reports — timeline, IOCs, escalation |
+| `security-journey/` | Full journey to obtaining security+ including its separate notes and writeups folder  |
 
 ## Progress log
 - [x] Nmap fundamentals (THM room complete)
