@@ -170,7 +170,7 @@ Lessons Learned into tuned detections is exactly how a Detection Engineer
 (see SOC Fundamentals writeup) turns a real incident into a permanent
 improvement, e.g. writing a new Sigma rule off a technique that wasn't
 previously alerting (the same pattern used for the SSH detection rule in
-this repo's `sigma-rules/` folder).
+this repo's `detections/sigma/` folder).
 
 ## Key Takeaway
 SANS and NIST aren't competing frameworks to memorize separately — they
