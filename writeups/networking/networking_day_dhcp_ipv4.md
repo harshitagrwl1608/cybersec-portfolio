@@ -22,11 +22,11 @@ focus on DHCPv4.
   be installed or may not be the component managing the interface.
 
   
-![IP address / interface state](../images/networking_day_dhcp_ipv6_01.png)
+![IP address / interface state](../../images/writeups/networking_day_dhcp_ipv6_01.png)
 
-![DHCP client exchange](../images/networking_day_dhcp_ipv6_02.png)
+![DHCP client exchange](../../images/writeups/networking_day_dhcp_ipv6_02.png)
 
-![DHCP client exchange](../images/networking_day_dhcp_ipv6_03.png)
+![DHCP client exchange](../../images/writeups/networking_day_dhcp_ipv6_03.png)
 
 
 
