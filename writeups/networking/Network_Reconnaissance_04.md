@@ -22,17 +22,17 @@ alternatives (SSH, SSL/TLS) that mitigate them.
 
 **Capturing Cleartext traffic using tcpdump on POP3 protocol**
 
-![Capturing Cleartext traffic using tcpdump on POP3 protocol](images/Network_Reconnaissance_04_01.png)
+![Capturing Cleartext traffic using tcpdump on POP3 protocol](../images/Network_Reconnaissance_04_01.png)
 
-![Capturing Cleartext traffic using tcpdump on POP3 protocol](images/Network_Reconnaissance_04_02.png)
+![Capturing Cleartext traffic using tcpdump on POP3 protocol](../images/Network_Reconnaissance_04_02.png)
 
-![Capturing Cleartext traffic using tcpdump on POP3 protocol](images/Network_Reconnaissance_04_03.png)
+![Capturing Cleartext traffic using tcpdump on POP3 protocol](../images/Network_Reconnaissance_04_03.png)
 
 **Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS**
 
-![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](images/Network_Reconnaissance_04_04.png)
+![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](../images/Network_Reconnaissance_04_04.png)
 
-![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](images/Network_Reconnaissance_04_05.png)
+![Connecting POP3 protocol using open_ssl on encrypted connection using STARTTLS](../images/Network_Reconnaissance_04_05.png)
 
 
 ## Detection angle (SOC-relevant)
