@@ -63,9 +63,9 @@ alert   icmp      any        any           ->  $HOME_NET       any
 
 **Snort Custom Rule and Check**
 
-![Snort Custom Rule](images/Snort_02.png)
+![Snort Custom Rule](../../images/writeups/Snort_02.png)
 
-![Snort custom rule check](images/Snort_01.png)
+![Snort custom rule check](../../images/writeups/Snort_01.png)
 
 ## Detection angle (SOC-relevant)
 This room *is* the detection angle — Snort rules are literally what a
