@@ -17,9 +17,9 @@ plus how time protocols (NTP) fit into network infrastructure.
 - used +trace flag to trace route on how a DNS query is passed down the DNS hierarchy.
 - analyzed how in a  DNS hierarchy local cache servers,authoritative servers, and root servers work
 
-![dig query](images/networking_day_dns_01.png)
-![dig query with trace ](images/networking_day_dns_02.png)
-![dig query with trace ](images/networking_day_dns_03.png)
+![dig query](../images/networking_day_dns_01.png)
+![dig query with trace ](../images/networking_day_dns_02.png)
+![dig query with trace ](../images/networking_day_dns_03.png)
 
 
 ## Detection angle (SOC-relevant)
