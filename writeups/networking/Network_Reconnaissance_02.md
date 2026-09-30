@@ -25,16 +25,16 @@ telnet, and a browser — trading passivity for more detailed information.
 
 **Ping an IP**
 
-![Ping an IP](images/Network_Reconnaissance_02_01.png)
+![Ping an IP](../images/Network_Reconnaissance_02_01.png)
 
 **Using TelNet on a open post for Banner Grabbing**
 
-![Using TelNet on a open post for Banner Grabbing](images/Network_Reconnaissance_02_02.png)
+![Using TelNet on a open post for Banner Grabbing](../images/Network_Reconnaissance_02_02.png)
 
 **Using netcat on a open post for Banner Grabbing**
 
-![Using netcat on a open post for Banner Grabbing](images/Network_Reconnaissance_02_03.png)
-![Using netcat on a open post for Banner Grabbing](images/Network_Reconnaissance_02_04.png)
+![Using netcat on a open post for Banner Grabbing](../images/Network_Reconnaissance_02_03.png)
+![Using netcat on a open post for Banner Grabbing](../images/Network_Reconnaissance_02_04.png)
 
 ## Detection angle (SOC-relevant)
 Even simple tools like ping/traceroute generate ICMP traffic that's logged —
