@@ -16,7 +16,7 @@ This room is the intro to Wireshark — how the interface is laid out, how to ac
 
 Started with the basics of what Wireshark actually does — capture traffic, decode it by protocol layer, filter it down, and reconstruct conversations so you can read them at the application level (assuming the traffic isn't encrypted). Capturing itself is simple in theory: pick the right interface, start the capture, generate or wait for traffic, stop it. The room lists the usual interface types — Ethernet, Wi-Fi, Loopback, VPN/tunnel interfaces — worth remembering loopback exists as an option since local traffic between processes on the same machine won't show up on a normal NIC capture.
 
-![Starting a capture in Wireshark](images/wireshark_01.png)
+![Starting a capture in Wireshark](../images/wireshark_01.png)
 
 The interface itself splits into three panes that all work together: Packet List (the summary line — number, time, source, destination, protocol, length, info), Packet Details (the same packet expanded down through its protocol layers — Frame → Ethernet II → IP → TCP → HTTP, that kind of chain), and Packet Bytes (the raw bytes plus their ASCII equivalent, which is honestly where I'd go hunting for readable strings or header data by eye).
 
@@ -36,7 +36,7 @@ arp
 tls
 ```
 
-![Applying a display filter](images/wireshark_03.png)
+![Applying a display filter](../images/wireshark_03.png)
 
 Port and IP filters follow a `field == value` pattern:
 
@@ -55,7 +55,7 @@ tcp.port == 80 || tcp.port == 443
 !(arp)
 ```
 
-![Combining filter conditions](images/wireshark_04.png)
+![Combining filter conditions](../images/wireshark_04.png)
 
 **Edit → Find Packet** lets you search inside the capture by display filter, hex value, string, or regex — useful when you know roughly what you're looking for but not which packet number it's in. And right-clicking a packet/conversation to build a filter directly from it is a nice shortcut for isolating one host or flow without hand-typing the whole expression.
 
@@ -65,7 +65,7 @@ Following a stream (**Analyze → Follow → TCP Stream**) reconstructs a full c
 
 Last section covered getting data *out* of Wireshark: **File → Export Specified Packets** for sharing a smaller evidence set instead of a whole capture, **File → Export Objects → <protocol>** for pulling out files that were actually transferred inside the capture (HTTP, SMB, TFTP, DICOM are the common ones), and **File → Merge** for combining multiple capture files when evidence is split across them. **Statistics → Capture File Properties** rounds it out — file hash, start/end time, comments, interfaces, stats — good for establishing context before diving in properly.
 
-![Expert Information panel flagging protocol conditions](images/wireshark_02.png)
+![Expert Information panel flagging protocol conditions](../images/wireshark_02.png)
 
 The Expert Information system (under Analyze) categorizes protocol conditions by severity — Chat, Note, Warn, Error — for things like checksum issues, malformed packets, retransmissions, deprecated protocol usage. Same caveat as before: these are hints worth investigating, not a verdict. Coloring rules (**View → Coloring Rules**) are a different tool for a similar goal — instead of hiding non-matching packets like a display filter does, coloring keeps everything visible but makes matching traffic visually pop, which is nice when you want the full picture but still want certain traffic to jump out at a glance.
 
