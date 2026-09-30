@@ -21,12 +21,12 @@ layers.
 
 **Analyzing inbound rules in a windows inbuilt firewall lab**
 
-![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_01.png)
-![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_02.png)
+![Analyzing inbound rules in a windows inbuilt firewall lab](../images/firewall_faundamentals_01.png)
+![Analyzing inbound rules in a windows inbuilt firewall lab](../images/firewall_faundamentals_02.png)
 
 **Configuring linux firewall(ufw)**
 
-![Analyzing inbound rules in a windows inbuilt firewall lab](images/firewall_faundamentals_03.png)
+![Analyzing inbound rules in a windows inbuilt firewall lab](../images/firewall_faundamentals_03.png)
 
 
 ## Detection angle (SOC-relevant)
