@@ -1,8 +1,19 @@
 # Network Recon
 
+## Passive recon
+`whois` / RDAP = registration and ownership data.
+`dig` / `nslookup` = DNS queries.
+Shodan / DNSDumpster / certificate-transparency data = discover publicly exposed or published information.
+
+## Active recon
+`ping` = ICMP reachability.
+`traceroute` / `tracert` = path/hop discovery.
+`telnet` / `nc` = basic service interaction and banner checks.
+`nmap` = host, port, and service enumeration.
+
 ## Nmap essentials
 ```bash
-nmap <target>                 # basic scan
+nmap <target>
 nmap -sn <net/CIDR>           # host discovery
 nmap -sS <target>             # TCP SYN scan
 nmap -sT <target>             # TCP connect scan
@@ -11,23 +22,11 @@ nmap -p- <target>             # all TCP ports
 nmap -p 22,80,443 <target>    # selected ports
 nmap -sV <target>             # service/version detection
 nmap -O <target>              # OS detection
-nmap -A <target>              # aggressive scan
 nmap -sC <target>             # default NSE scripts
-nmap -oN scan.txt <target>    # normal output
+nmap -Pn <target>             # skip host-discovery check
 ```
 
-## Recon workflow
-**Discover hosts → identify ports → enumerate services → fingerprint versions → validate exposure → document evidence**
-
-## Companion commands
-```bash
-ip a
-ip route
-ss -tulpn
-dig example.com
-nslookup example.com
-arp -a
-traceroute <target>
-```
+## Workflow
+**Passive → active → discover hosts → identify ports → enumerate services → fingerprint → validate → document**
 
 **Scope first:** scan only systems you are authorized to test.
