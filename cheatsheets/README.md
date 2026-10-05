@@ -26,7 +26,6 @@ These are intentionally **short**: definitions, comparisons, ports, commands, at
 | Web | [Web Security](web-security.md) | OWASP, SQLi, XSS, CSRF, IDOR, SSRF |
 | Human Layer | [Phishing & Social Engineering](phishing-social-engineering.md) | Practical phishing triage and attack types |
 | Blue Team | [SOC & Detection](soc-detection.md) | SIEM, IDS/IPS, EDR/XDR, alert triage |
-| Blue Team | [Incident Response](incident-response.md) | Response workflow and evidence |
 | Blue Team | [Digital Forensics](forensics.md) | Evidence, volatility, forensic tools |
 | Crypto | [Cryptography](cryptography.md) | Hashing, signatures, PKI, TLS |
 
@@ -41,6 +40,6 @@ These sheets intentionally absorb the recurring high-value material demonstrated
 
 ## Security+ priority
 
-Current SY0-701 domain weights are **4.0 Security Operations (28%) → 2.0 Threats, Vulnerabilities & Mitigations (22%) → 5.0 Security Program Management & Oversight (20%) → 3.0 Security Architecture (18%) → 1.0 General Security Concepts (12%)**. citeturn675484search0turn675484search1
+Current SY0-701 domain weights: **4.0 Security Operations (28%) → 2.0 Threats, Vulnerabilities & Mitigations (22%) → 5.0 Security Program Management & Oversight (20%) → 3.0 Security Architecture (18%) → 1.0 General Security Concepts (12%)**.
 
 The repository contains the long-form study material; this folder is the fast-revision layer.
