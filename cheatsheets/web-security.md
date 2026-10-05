@@ -1,9 +1,9 @@
 # Web Security
 
 ## Current OWASP note
-Your repository writeups use a mixture of OWASP naming from different editions. The current **OWASP Top 10:2025** keeps A01 Broken Access Control and moves SSRF into A01; current A10 is **Mishandling of Exceptional Conditions**. citeturn124969search0turn124969search1
+Your repository writeups use a mixture of OWASP naming from different editions. The current **[OWASP Top 10:2025](https://top10.owasp.org/2025/en/)** keeps A01 Broken Access Control and rolls SSRF into A01; current A10 is **Mishandling of Exceptional Conditions**.
 
-Keep the existing 2021/legacy writeups intact for learning history, but do not label their SSRF category as current OWASP A10.
+Keep the existing writeups intact for learning history, but do not label their SSRF material as current OWASP A10.
 
 ## OWASP Top 10:2025
 A01 Broken Access Control  
