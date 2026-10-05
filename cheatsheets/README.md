@@ -8,23 +8,39 @@ These are intentionally **short**: definitions, comparisons, ports, commands, at
 
 | Area | Cheatsheet | Best for |
 |---|---|---|
-| Security+ | [Security+ Core](security-plus-core.md) | CIA, AAA, controls, zero trust, crypto, resilience |
-| Security+ | [Threats & Attacks](security-plus-threats.md) | Actors, vectors, vulnerabilities, malware, attack distinctions |
-| Security+ | [Mitigation & Hardening](security-plus-mitigation.md) | Hardening, segmentation, firewalls, endpoint and data protection |
-| Security+ | [IAM & Access Control](iam-access-control.md) | AAA, authentication factors, authorization, MFA, NAC |
-| Security+ | [Incident Response](incident-response.md) | IR phases, evidence, containment, recovery, IoCs |
-| Security+ | [Risk, GRC & Resilience](risk-grc-resilience.md) | Risk terms, governance, BIA, RTO/RPO, continuity |
+| Security+ | [Security+ Core](security-plus-core.md) | CIA, AAA, controls, Zero Trust, crypto |
+| Security+ | [Threats & Attacks](security-plus-threats.md) | Actors, vectors, malware, attack distinctions |
+| Security+ | [Mitigation & Hardening](security-plus-mitigation.md) | Hardening, segmentation, firewalls, endpoints |
+| Security+ | [IAM & Access Control](iam-access-control.md) | AAA, MFA, authorization, Kerberos |
+| Security+ | [Incident Response](incident-response.md) | IR lifecycle, triage, evidence, IoCs |
+| Security+ | [Risk, GRC & Resilience](risk-grc-resilience.md) | Risk, governance, BIA, RTO/RPO, backups |
 | Networking | [Protocols & Ports](networking-ports.md) | Common ports, protocols, secure alternatives |
-| Networking | [Network Recon](network-recon.md) | Nmap, discovery, enumeration, useful filters |
+| Networking | [Network Recon](network-recon.md) | Passive/active recon, Nmap, enumeration |
+| Networking | [Network Attacks](network-attacks.md) | ARP spoofing, MAC flooding, VLAN hopping, DoS |
 | Networking | [Packet Analysis](packet-analysis.md) | Wireshark/tcpdump filters and triage |
-| Linux | [Linux Security Commands](linux-security.md) | Files, permissions, processes, network, logs |
-| Windows | [Windows Security Commands](windows-security.md) | CMD/PowerShell triage and common locations |
-| Web | [Web Security](web-security.md) | OWASP Top 10, SQLi/XSS/CSRF/IDOR essentials |
-| Blue Team | [SOC & Detection](soc-detection.md) | SIEM, logs, IDS/IPS, EDR/XDR, IoCs |
-| Crypto | [Cryptography](cryptography.md) | Symmetric/asymmetric, hashes, PKI, TLS, signatures |
+| Networking | [Troubleshooting](network-troubleshooting.md) | Evidence-driven troubleshooting workflow |
+| Tools | [Security Tools](security-tools.md) | Nmap, Snort, Sigma, CyberChef, John, Metasploit |
+| Linux | [Linux Security](linux-security.md) | Files, permissions, processes, network, logs |
+| Windows | [Windows Security](windows-security.md) | CMD/PowerShell host triage |
+| Windows/AD | [Windows & AD](windows-ad.md) | AD, Kerberos, DNS, GPO, security events |
+| Web | [Web Security](web-security.md) | OWASP, SQLi, XSS, CSRF, IDOR, SSRF |
+| Human Layer | [Phishing & Social Engineering](phishing-social-engineering.md) | Practical phishing triage and attack types |
+| Blue Team | [SOC & Detection](soc-detection.md) | SIEM, IDS/IPS, EDR/XDR, alert triage |
+| Blue Team | [Incident Response](incident-response.md) | Response workflow and evidence |
+| Blue Team | [Digital Forensics](forensics.md) | Evidence, volatility, forensic tools |
+| Crypto | [Cryptography](cryptography.md) | Hashing, signatures, PKI, TLS |
+
+## Built from this portfolio
+
+These sheets intentionally absorb the recurring high-value material demonstrated in the repository's **writeups**, not only the Security+ note batches.
+
+- **Networking writeups:** passive/active reconnaissance, Nmap, DNS/DHCP, cleartext protocols, tcpdump/Wireshark, ARP poisoning, MAC flooding, VLAN hopping, DoS/DDoS, firewalls and troubleshooting.
+- **Tool writeups:** Nmap, netcat, CyberChef, John the Ripper, Metasploit, OpenSSL, Linux shell, Windows CMD and PowerShell.
+- **Blue-team writeups:** Windows/AD, Kerberos, SIEM, logs, IDS/Snort, Sigma, IoCs, phishing, incident response, digital forensics and SOC operations.
+- **Web writeups:** OWASP categories, authentication failures, injection, SSRF, IDOR, business-logic flaws, certificates and SQL injection.
 
 ## Security+ priority
 
-SY0-701 weighting: **4.0 Security Operations (28%) → 2.0 Threats, Vulnerabilities & Mitigations (22%) → 5.0 Security Program Management & Oversight (20%) → 3.0 Security Architecture (18%) → 1.0 General Security Concepts (12%)**.
+Current SY0-701 domain weights are **4.0 Security Operations (28%) → 2.0 Threats, Vulnerabilities & Mitigations (22%) → 5.0 Security Program Management & Oversight (20%) → 3.0 Security Architecture (18%) → 1.0 General Security Concepts (12%)**. citeturn675484search0turn675484search1
 
-The current repository already contains deeper Security+ notes; this folder is the last-minute lookup layer.
+The repository contains the long-form study material; this folder is the fast-revision layer.
