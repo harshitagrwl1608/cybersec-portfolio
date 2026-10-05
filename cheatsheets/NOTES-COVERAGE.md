@@ -1,5 +1,7 @@
 # Notes → Cheatsheet Coverage
 
+**Coverage status: 146 / 146 substantive topic notes audited and mapped.**
+
 This file documents the coverage design behind `cheatsheets/`. The topic numbers refer to the existing note indexes in each collection.
 
 ## Security+ — First Batch (61 topics)
