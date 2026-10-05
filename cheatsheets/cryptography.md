@@ -5,43 +5,61 @@
 |---|---|---|
 | Keys | Shared secret | Public + private |
 | Speed | Fast | Slower |
-| Typical use | Bulk encryption | Key exchange, signatures |
+| Typical use | Bulk encryption | Key establishment/signatures |
 | Examples | AES | RSA, ECC |
 
+## Hybrid encryption
+Use asymmetric cryptography to establish/protect a session key, then symmetric crypto for bulk data.
+
+## Key exchange
+DH/ECDH derive a shared secret without directly sending that secret. Ephemeral keys can provide forward secrecy when authenticated correctly.
+
 ## Hashing
-Hash = fixed-length digest.
+Fixed-length digest; one-way for cryptographic hashes. Used for integrity, password verification, and signing workflows.
 
-Remember:
-- one-way for cryptographic hashes
-- collision resistance matters
-- small input change → different digest
+Collision = two inputs produce the same digest. Password storage needs a salt + purpose-built password KDF.
 
-**Salt:** unique random value added to passwords before hashing; defeats simple precomputed-table reuse.
-
-Use purpose-built password hashing/KDFs rather than fast general-purpose hashes.
+## Crypto attacks
+**Birthday attack:** targets collision probability.  
+**Downgrade attack:** forces weaker protocol/cipher choices.
+**Defend:** modern algorithms, sufficient hash length, disable obsolete protocols, validate negotiated security.
 
 ## Digital signatures
-**Hash message → sign with private key → verify with public key**
+**Hash → sign with private key → verify with public key.** Provides integrity + authenticity + non-repudiation support; not confidentiality.
 
-Provides:
-- Integrity
-- Authenticity
-- Non-repudiation support
+## PKI / certificates
+CA signs certificates binding identity to public key.
 
-Does **not** provide confidentiality.
+Validate: **chain → issuer → dates → SAN/hostname → signature → revocation**.
 
-## PKI
-CA signs certificates binding identities to public keys.
+CSR = request for a certificate; applicant proves possession of its private key.
 
-Validate: **chain → issuer → dates → SAN/hostname → signature → revocation**
+## Revocation
+CRL = signed list of revoked certificate serials.  
+OCSP = query certificate status.  
+OCSP stapling = server supplies signed status during TLS.
 
-## TLS
-TLS provides secure transport for applications.
+Wildcard certificate = certificate covering matching names under a domain pattern.
 
-Typical HTTPS flow: **ClientHello → ServerHello/certificates → key establishment → encrypted application data**
+## Key management
+Lifecycle: **generate → distribute → activate → rotate → backup/archive → revoke → destroy**.
 
-## Crypto terms
-Key stretching = deliberately costly password/key derivation.  
-Perfect forward secrecy = past session keys remain protected after long-term key compromise when ephemeral keys are used.  
-Key escrow = trusted third-party retention/recovery of keys.  
-HSM = hardware designed to protect/manage cryptographic keys.
+KMS = centralized key management.  
+HSM = dedicated hardware-backed key protection.  
+Key escrow = authorized third-party recovery storage.
+
+## Hardware-backed trust
+TPM = platform hardware for protected keys, measured/secure operations, and attestation.  
+Secure enclave = isolated protected execution/key-storage environment on supported devices.
+
+## Data protection
+At rest = disk/database/files/backups.  
+In transit = TLS/SSH/IPsec.  
+In use = actively processed.
+
+Encryption ≠ hashing ≠ masking ≠ tokenization ≠ obfuscation.
+
+## Blockchain
+Distributed ledger where records are linked cryptographically and maintained under a consensus/trust model.
+
+Security concerns: private-key protection, validator/node security, smart-contract flaws, unauthorized contract/key changes.
