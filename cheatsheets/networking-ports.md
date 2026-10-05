@@ -8,7 +8,7 @@
 | 25 | SMTP | Mail transfer |
 | 53 | DNS | Name service |
 | 67/68 | DHCP | IPv4 assignment |
-| 80 | HTTP | Web |
+| 80 | HTTP | Web; plaintext at HTTP layer |
 | 88 | Kerberos | Authentication |
 | 110 | POP3 | Mail retrieval |
 | 123 | NTP | Time |
@@ -17,17 +17,17 @@
 | 389 | LDAP | Directory |
 | 443 | HTTPS | HTTP over TLS |
 | 445 | SMB | Windows file/printer sharing |
+| 500 | IKE | IPsec key management |
 | 514 | Syslog | Common traditional UDP logging |
 | 636 | LDAPS | LDAP over TLS |
-| 989/990 | FTPS | FTP over TLS |
 | 1433 | MSSQL | Microsoft SQL Server |
 | 3306 | MySQL | MySQL |
 | 3389 | RDP | Windows remote desktop |
-| 5060/5061 | SIP | VoIP signaling |
+| 4500 | IPsec NAT-T | Encapsulated IPsec through NAT |
 | 5432 | PostgreSQL | PostgreSQL |
 | 5900 | VNC | Remote desktop |
 
-**Security cue:** prefer encrypted alternatives where appropriate: SSH/SFTP, HTTPS, FTPS.
+**Secure alternatives:** SSH/SFTP, HTTPS, FTPS/explicit TLS, LDAPS.
 
 ### TCP vs UDP
 TCP = connection-oriented, reliable, ordered.  
