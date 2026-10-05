@@ -3,6 +3,7 @@
 ## CMD
 ```cmd
 whoami
+whoami /all
 ipconfig /all
 route print
 arp -a
@@ -10,7 +11,14 @@ netstat -ano
 tasklist
 tasklist /svc
 systeminfo
-whoami /all
+tasklist /FI "IMAGENAME eq sshd.exe"
+```
+
+## Maintenance / integrity
+```cmd
+sfc /scannow
+chkdsk C: /f
+driverquery
 ```
 
 ## PowerShell
@@ -18,19 +26,16 @@ whoami /all
 Get-Process
 Get-Service
 Get-NetTCPConnection
+Get-NetIPConfiguration
 Get-NetIPAddress
-Get-WinEvent -LogName Security
+Get-WinEvent -LogName Security -MaxEvents 20
 Get-LocalUser
 Get-LocalGroupMember Administrators
 Get-FileHash .\file.exe -Algorithm SHA256
-Get-ChildItem -Force
+Get-Item .\file.txt -Stream *
 ```
 
-## Security locations
-- Windows Event Logs
-- Security log = authentication/security events
-- Sysmon = richer endpoint telemetry when deployed
-- Registry = configuration/persistence source; investigate unexpected changes
+## Triage
+**Account → process → network → persistence → logs → hash → scope**
 
-## Fast triage
-**Account → process → network connection → persistence → logs → hash → scope**
+PowerShell is object-oriented; full cmdlet names are preferable in scripts even when aliases exist.
