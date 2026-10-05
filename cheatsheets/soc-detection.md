@@ -1,37 +1,41 @@
 # SOC & Detection
 
+## Core flow
+**Telemetry → Detection → Alert → Triage → Investigation → Response → Lessons Learned**
+
 ## SIEM
-**Collect → normalize → correlate → alert → investigate → report**
-
-SIEM = centralized security-event visibility and correlation.
-
-## Log sources
-Identity/AD · endpoints · firewall · VPN · DNS · proxy · web server · cloud control plane · applications · EDR.
+Collect → normalize → correlate → alert/search → investigate.
+Missing or badly parsed logs = visibility gap.
 
 ## IDS / IPS
-IDS = detects/alerts.  
-IPS = detects + actively blocks inline.
-
-NIDS = network-based.  
-HIDS = host-based.
+IDS = detect/alert.  
+IPS = detect + block inline.
+NIDS = network.  
+HIDS = host.
 
 ## EDR / XDR
-EDR = endpoint-centric telemetry and response.  
-XDR = correlates telemetry across multiple security layers.
+EDR = endpoint telemetry + detection + response.  
+XDR = correlate signals across multiple security layers.
+
+## Useful Windows events
+4624 = successful logon  
+4625 = failed logon  
+4688 = new process created  
+4720 = user account created  
+4768 = Kerberos TGT request  
+4769 = Kerberos service-ticket request
 
 ## Detection logic
-**Signal + context + baseline + correlation → higher confidence**
+**Signal + context + baseline + correlation → confidence**
 
-Useful enrichment: asset owner · user identity · destination/domain · process tree · hash reputation · geo/time context · known-good baseline.
+Enrich with account, host, process tree, source/destination, time, asset owner, hash/domain reputation.
 
-## IoC examples
-Hash · IP · domain · URL · filename · mutex · registry key · process · email artifact.
+## IoCs
+Hash · IP · domain · URL · filename · process · registry artifact · email artifact.
 
-## Sigma
-Portable detection-rule format for log/SIEM detection logic.
+## Sigma / Snort
+Sigma = portable log/SIEM detection logic.
+Snort = network rule-based detection; rule fields include action, protocol, source/destination and metadata such as SID/revision.
 
-## Alert tuning
-Reduce noise by suppressing known-benign patterns, narrowing scope, requiring correlated signals, using thresholds carefully, and documenting exceptions.
-
-## Incident cue
-**Detect → validate → scope → contain → eradicate → recover → lessons learned**
+## Alert rule
+**Alert ≠ incident.** Validate, correlate, scope, then respond according to procedure.
