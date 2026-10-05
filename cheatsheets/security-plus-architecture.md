@@ -70,6 +70,9 @@ In use = actively processed.
 Sovereignty = data subject to laws/regulations based on jurisdiction.  
 Geolocation = location-derived policy signal.
 
+## Power resilience
+UPS protects against power interruption/surges/brownouts.  \nStandby/office = basic.  \nLine-interactive = voltage regulation.  \nOnline/double-conversion = highest isolation/continuous conditioning.  \nGenerator = longer-duration backup power.
+
 ## Security zones
 External/Internet → DMZ → Internal → Management/Restricted.
 
