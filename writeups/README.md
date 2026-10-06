@@ -6,7 +6,7 @@ Practical labs and focused technical exercises. Most hands-on writeups originate
 |---|---|
 | [Networking](networking/) | Reconnaissance, protocols, troubleshooting and packet analysis, including TryHackMe Nmap/recon rooms |
 | [Web Security](web-security/) | OWASP and web-application security |
-| [Blue Team](blue-team/) | Windows/Active Directory, SOC, logs, IDS and incident response, including TryHackMe Windows/AD rooms |
+| [Blue Team](blue-team/) | Windows/Active Directory, SOC, logs, IDS and incident response, including TryHackMe Windows/AD rooms, splunk |
 | [Tools](tools/) | Security-tool and command-line writeups |
 
 This layout keeps the portfolio focused on the **skills demonstrated** rather than splitting a small number of files into a separate platform-specific folder.
