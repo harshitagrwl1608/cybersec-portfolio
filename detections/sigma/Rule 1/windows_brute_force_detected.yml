@@ -1,0 +1,59 @@
+title: Windows Brute Force - Repeated Failed Logons
+id: ca27cd37-e957-4312-9213-3007a226f0e1
+status: experimental
+description: >
+    Detects repeated Windows failed logon attempts against the same user
+    account and originating source IP within a short time window. This
+    behavior may indicate a brute-force password attack.
+author: Harshit Garg
+date: 2026-10-01
+logsource:
+    product: windows
+    service: security
+
+detection:
+    selection:
+        EventID: 4625
+
+    filter_machine_accounts:
+        TargetUserName|endswith: '$'
+
+    filter_empty_source:
+        IpAddress:
+            - '-'
+            - '::1'
+            - '127.0.0.1'
+
+    condition: selection and not filter_machine_accounts and not filter_empty_source
+
+name: windows_failed_logon
+
+---
+
+title: Windows Brute Force - Correlated Failed Login attempts
+id: 75f3f5b6-9706-461f-ab9a-17cd8c668a30
+status: experimental
+description: >
+    Correlates repeated failed Windows logon events for the same user and
+    source IP. An alert is generated when at least 5 failed login attempts occur
+    within 2 minutes, indicating possible brute-force activity.
+author: Harshit Garg
+date: 2026-10-08
+
+correlation:
+    type: event_count
+    rules:
+        - windows_failed_logon
+    group-by:
+        - TargetUserName
+        - IpAddress
+    timespan: 2m
+    condition:
+        gte: 5
+
+falsepositives:
+    - Users repeatedly entering an incorrect password
+    - Automated applications using an outdated password
+    - Misconfigured services repeatedly attempting authentication
+
+level: high

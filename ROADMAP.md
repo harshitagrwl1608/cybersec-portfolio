@@ -10,7 +10,7 @@
 - [x] Initial Docker/UFW firewall lab
 - [ ] Complete and validate Security+ Domains 1–5
 - [ ] Complete SOC Level 1 learning path
-- [ ] Publish two independently tested Sigma detections
+- [x] Publish two independently manually tested Sigma detections
 - [ ] Add a second detection technology example (Snort/Suricata)
 - [ ] Add one complete end-to-end incident investigation with evidence
 - [ ] Add automated documentation/link validation in GitHub Actions

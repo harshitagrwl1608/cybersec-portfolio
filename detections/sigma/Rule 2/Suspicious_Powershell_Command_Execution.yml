@@ -1,0 +1,40 @@
+title: Suspicious PowerShell - Encoded Command
+id: 0d7f519a-d030-4fa9-bfff-cfda319b9dde
+status: experimental
+description: >
+    Detects PowerShell processes launched with an encoded command.
+    Attackers may use encoded PowerShell commands to hide malicious
+    commands from basic inspection.
+    A normal user won't necessarily encode the command he needs to get 
+    executed.
+    Encoded commands may be able to bypass rules based on which commands 
+    can be executed by a user.
+    
+author: Harshit Garg
+date: 2026-10-02
+
+logsource:
+    product: windows
+    service: security
+
+detection:
+    selection_process:
+        EventID: 4688
+        NewProcessName|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+
+    selection_encoded:
+        CommandLine|contains:
+            - ' -enc '
+            - ' -encodedcommand '
+            - ' -EncodedCommand '
+
+    condition: selection_process and selection_encoded
+
+falsepositives:
+    - Administrators using encoded PowerShell commands for legitimate automation
+    - Security or management tools using encoded PowerShell scripts
+    - Automated deployment scripts using encoded commands
+
+level: medium
