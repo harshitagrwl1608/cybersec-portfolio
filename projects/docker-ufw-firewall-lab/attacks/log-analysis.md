@@ -89,10 +89,6 @@ those ports.
 If this log were ingested into a SIEM, the equivalent of "flag a port scan" is:
 count(distinct dst_port) by src_ip within 60s > threshold
 
-This is the same logic behind the Sigma rule idea in the main README's 
-Detection Angle section — this file is the evidence that logic actually holds 
-up against real log data, not just a theoretical claim.
-
 ## Key Takeaway
 A firewall rule working and a firewall rule being *observable* are two
 different things. This lab set out to prove detection logic against UFW

@@ -1,0 +1,73 @@
+title: Windows Failed Logon (Building Block)
+id: ca27cd37-e957-4312-9213-3007a226f0e1
+name: windows_failed_logon
+status: experimental
+description: >
+    Building-block rule that matches a single failed Windows logon
+    (EventID 4625), excluding machine accounts and empty/loopback source
+    addresses. One failed logon is normal and not alert-worthy by itself;
+    this rule is meant to be referenced by the correlation rule below.
+author: Harshit Garg
+date: 2026-10-01
+logsource:
+    product: windows
+    service: security
+
+detection:
+    selection:
+        EventID: 4625
+
+    filter_machine_accounts:
+        TargetUserName|endswith: '$'
+
+    filter_empty_source:
+        IpAddress:
+            - '-'
+            - '::1'
+            - '127.0.0.1'
+
+    condition: selection and not filter_machine_accounts and not filter_empty_source
+
+falsepositives:
+    - A user mistyping a password (expected; not alert-worthy on its own)
+level: informational
+tags:
+    - attack.credential_access
+    - attack.t1110
+
+---
+
+title: Windows Brute Force - Correlated Failed Logon Attempts
+id: 75f3f5b6-9706-461f-ab9a-17cd8c668a30
+status: experimental
+description: >
+    Correlates failed Windows logons for the same user and source IP.
+    Alerts when at least 5 failures occur within 2 minutes, which may
+    indicate a brute-force password attack against one account from one
+    source. Known limits: does not detect password spraying (one source,
+    many accounts) or distributed attempts (many sources, one account).
+    Window semantics are backend-defined; a fixed-bucket backend can miss
+    a burst that straddles a bucket boundary.
+author: Harshit Garg
+date: 2026-10-08
+
+correlation:
+    type: event_count
+    rules:
+        - windows_failed_logon
+    group-by:
+        - TargetUserName
+        - IpAddress
+    timespan: 2m
+    condition:
+        gte: 5
+
+falsepositives:
+    - Users repeatedly entering an incorrect password
+    - Automated applications using an outdated password
+    - Misconfigured services repeatedly attempting authentication
+
+level: high
+tags:
+    - attack.credential_access
+    - attack.t1110.001

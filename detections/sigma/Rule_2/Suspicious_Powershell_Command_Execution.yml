@@ -1,0 +1,46 @@
+title: Suspicious PowerShell - Encoded Command
+id: 0d7f519a-d030-4fa9-bfff-cfda319b9dde
+status: experimental
+description: >
+    Detects PowerShell launched with an encoded command (-EncodedCommand
+    or any of PowerShell's accepted abbreviations such as -e, -ec, -enc).
+    Attackers use encoded commands to hide what is being executed from
+    basic inspection and from rules that match specific command strings.
+    Encoding is not malicious on its own; treat as a signal to investigate.
+    Requires process-creation logging WITH command line (Sysmon EventID 1,
+    or Security EventID 4688 with "Include command line in process
+    creation events" enabled; it is off by default).
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+author: Harshit Garg
+date: 2026-10-02
+
+logsource:
+    category: process_creation
+    product: windows
+
+detection:
+    selection_process:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+
+    selection_encoded:
+        # PowerShell accepts any unambiguous prefix of -EncodedCommand.
+        # The trailing (\s|:|$) stops cmdlet parameters such as -Encoding
+        # from matching. Known gap: Unicode dash characters (en/em dash).
+        CommandLine|re: '(?i)\s[-/](e|ec|en|enc|enco|encod|encode|encoded|encodedc|encodedco|encodedcom|encodedcomm|encodedcomma|encodedcomman|encodedcommand)(\s|:|$)'
+
+    condition: selection_process and selection_encoded
+
+falsepositives:
+    - Administrators using encoded PowerShell commands for legitimate automation
+    - Security or management tools using encoded PowerShell scripts
+    - Automated deployment scripts using encoded commands
+
+level: medium
+tags:
+    - attack.execution
+    - attack.t1059.001
+    - attack.defense_evasion
+    - attack.t1027
