@@ -21,8 +21,17 @@ Elicitation = extract information conversationally.
 Watering hole = compromise site a target group visits.  
 Tailgating = follow authorized person into secure area.
 
+## Email security controls
+- **Secure email gateway:** filters spam/phishing, checks links/attachments, quarantines suspicious mail, and logs results.
+- **SPF:** DNS policy identifies mail servers allowed to send for a domain's SMTP envelope identity.
+- **DKIM:** cryptographic signature helps verify signed message content and signing domain.
+- **DMARC:** aligns SPF/DKIM authentication with the visible domain, publishes a policy, and enables reporting.
+- A pass is not proof an email is safe; use alignment, sender context, reputation and message content together.
+
 ## Analyst response
 Preserve the message → inspect sender/link/attachment → extract IOCs → check reputation → search related telemetry → contain affected account/device if confirmed → document.
 
-## Defenses
-Security awareness · phishing-resistant MFA · email/web filtering · attachment sandboxing · URL analysis · DMARC/SPF/DKIM where appropriate · out-of-band verification.
+## Defenses & awareness
+Security awareness · phishing-resistant MFA · email/web filtering · attachment sandboxing · URL analysis · SPF/DKIM/DMARC · out-of-band verification.
+
+Train users to report suspicious messages quickly. Phishing simulations can measure reporting and detection, but should be used to improve controls and training—not to treat every click as proof of negligence.
