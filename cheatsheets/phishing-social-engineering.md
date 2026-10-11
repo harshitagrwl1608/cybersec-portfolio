@@ -34,4 +34,4 @@ Preserve the message → inspect sender/link/attachment → extract IOCs → che
 ## Defenses & awareness
 Security awareness · phishing-resistant MFA · email/web filtering · attachment sandboxing · URL analysis · SPF/DKIM/DMARC · out-of-band verification.
 
-Train users to report suspicious messages quickly. Phishing simulations can measure reporting and detection, but should be used to improve controls and training—not to treat every click as proof of negligence.
+Use onboarding and role-based training, refresh it as systems/threats change, and include hybrid/remote-work risks. Track completion and measure whether users can recognize and report suspicious activity. Phishing simulations should improve controls and training—not treat every click as proof of negligence.
