@@ -1,0 +1,10 @@
+index=main dataset="bruteforce" EventID=4625
+| eval _time=strptime(event_time, "%Y-%m-%d %H:%M:%S")
+| where isnotnull(TargetUserName) AND isnotnull(IpAddress)
+    AND NOT match(TargetUserName, "\$$")
+    AND NOT (IpAddress="-" OR IpAddress="::1" OR IpAddress="127.0.0.1")
+| bin _time span=2m
+| stats count AS failed_logons values(test_case) AS test_cases min(_time) AS first_seen max(_time) AS last_seen BY _time TargetUserName IpAddress
+| where failed_logons >= 5
+| eval first_seen=strftime(first_seen, "%Y-%m-%d %H:%M:%S"), last_seen=strftime(last_seen, "%Y-%m-%d %H:%M:%S")
+| table first_seen last_seen TargetUserName IpAddress failed_logons test_cases

@@ -1,0 +1,6 @@
+index=main dataset="powershell"
+| eval _time=strptime(event_time, "%Y-%m-%d %H:%M:%S")
+| eval image_match=if(like(lower(Image), "%powershell.exe") OR like(lower(Image), "%pwsh.exe"), 1, 0)
+| eval encoded_switch=if(match(CommandLine, "(?i)\s[-/](e|ec|en|enc|enco|encod|encode|encoded|encodedc|encodedco|encodedcom|encodedcomm|encodedcomma|encodedcomman|encodedcommand)(\s|:|$)"), 1, 0)
+| where image_match=1 AND encoded_switch=1
+| table event_time test_case Image CommandLine
