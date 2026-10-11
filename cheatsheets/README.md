@@ -40,7 +40,7 @@ These are intentionally **short**: definitions, comparisons, ports, commands, at
 
 ## Source coverage
 
-The current index accounts for **176 substantive topic notes** across all four note collections:
+The current index accounts for **176 substantive topic notes** across five note collections:
 
 | Note collection | Topic notes mapped |
 |---|---:|
