@@ -30,7 +30,7 @@ IIoT = industrial IoT.
 OT = systems controlling physical processes.  
 ICS/SCADA = industrial control/monitoring.
 
-Security priority: **availability + safety + segmentation + carefully controlled change**.
+Security priority: **availability + safety + segmentation + carefully controlled change**.  
 RTOS = real-time OS used when timing is critical.
 
 ## Network appliances
@@ -58,9 +58,18 @@ RADIUS commonly handles backend authentication.
 ## Secure communication
 VPN = protected tunnel over untrusted network.  
 IPsec = network-layer security.  
-SSL/TLS VPN = application/transport-based remote access commonly over 443.  
+TLS-based remote access commonly uses HTTPS/TCP 443.  
 SD-WAN = software-defined WAN policy/connectivity.  
 SASE = cloud-delivered networking + security.
+
+## Wireless & mobile
+- **Site survey:** map coverage, AP/channel use, interference, weak spots and rogue APs; spectrum analyzer helps identify RF interference.
+- **WPA2-Personal:** shared PSK; weak passwords permit offline guessing when the necessary handshake is captured.
+- **WPA3-Personal:** SAE/Dragonfly improves resistance to passive offline password guessing; keep passphrases strong.
+- **Enterprise Wi-Fi:** 802.1X/EAP with an authenticator and commonly a RADIUS server; authenticate users/devices individually.
+- **MDM:** enforces device configuration, encryption, screen lock, app controls, compliance checks and supported remote lock/wipe.
+- **BYOD:** employee-owned device; privacy and work/personal data separation matter. **COPE:** corporate-owned, personally enabled. **CYOD:** choose from an approved device set.
+- Bluetooth: remove old pairings, avoid unknown requests, disable unnecessary discoverability and patch devices.
 
 ## Data states
 At rest = stored.  
@@ -71,7 +80,11 @@ Sovereignty = data subject to laws/regulations based on jurisdiction.
 Geolocation = location-derived policy signal.
 
 ## Power resilience
-UPS protects against power interruption/surges/brownouts.  \nStandby/office = basic.  \nLine-interactive = voltage regulation.  \nOnline/double-conversion = highest isolation/continuous conditioning.  \nGenerator = longer-duration backup power.
+UPS protects against interruptions, surges and brownouts.  
+Standby/office UPS = basic backup.  
+Line-interactive = voltage regulation.  
+Online/double-conversion = continuous power conditioning/isolation.  
+Generator = longer-duration backup power.
 
 ## Security zones
 External/Internet → DMZ → Internal → Management/Restricted.
