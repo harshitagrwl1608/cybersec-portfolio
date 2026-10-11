@@ -8,10 +8,10 @@
 - [x] Linux and Windows fundamentals
 - [x] Core SOC concepts: logs, SIEM, IDS and incident response
 - [x] Initial Docker/UFW firewall lab
-- [ ] Complete and validate Security+ Domains 1–5
+- [x] Complete and validate Security+ Domains 1–5
 - [ ] Complete SOC Level 1 learning path
-- [x] Publish two independently manually tested Sigma detections
-- [ ] Add a second detection technology example (Snort/Suricata)
+- [x] Publish two independently manual+sample tested Sigma detections
+- [x] Add a second detection technology example (Snort/Suricata)
 - [ ] Add one complete end-to-end incident investigation with evidence
 - [ ] Add automated documentation/link validation in GitHub Actions
 
