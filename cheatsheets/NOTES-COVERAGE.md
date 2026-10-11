@@ -1,8 +1,8 @@
 # Notes → Cheatsheet Coverage
 
-**Coverage status: 146 / 146 substantive topic notes audited and mapped.**
+**Coverage status: 176 / 176 substantive topic notes mapped.**
 
-This file documents the coverage design behind `cheatsheets/`. The topic numbers refer to the existing note indexes in each collection.
+This file documents the coverage design behind `cheatsheets/`. Topic numbers refer to the indexes in each collection. Source-image indexes and page-level traceability files are references, not additional study topics.
 
 ## Security+ — First Batch (61 topics)
 
@@ -12,7 +12,7 @@ This file documents the coverage design behind `cheatsheets/`. The topic numbers
 | 10–18 | Controls, non-repudiation, AAA, authentication/authorization, gap analysis, Zero Trust, physical security, deception, change management → `security-plus-core.md`, `iam-access-control.md`, `security-plus-governance.md`, `security-plus-physical.md` |
 | 19–31 | PKI, escrow, encryption, key exchange, TPM/HSM, secure enclave, tokenization/masking, hashing, blockchain, certificates, revocation/OCSP → `cryptography.md` |
 | 32–34 | Threat actors, vectors, social engineering → `security-plus-threats.md`, `phishing-social-engineering.md` |
-| 35–46 | Memory injection, buffer overflow, race conditions, malicious updates, OS/cloud/hardware/mobile/zero-day vulnerabilities → `security-plus-vulnerabilities.md` |
+| 35–46 | Memory injection, buffer overflow, race conditions, malicious updates, OS/cloud/hardware/mobile/zero-day vulnerabilities → `security-plus-vulnerabilities.md`, `vulnerability-management.md` |
 | 47–50 | Malware, viruses/worms, spyware/bloatware, keyloggers/rootkits/logic bombs → `security-plus-threats.md`, `security-plus-vulnerabilities.md` |
 | 51–56 | Physical attacks, DoS, DNS attacks, wireless attacks, on-path, replay/session attacks → `security-plus-physical.md`, `network-attacks.md`, `security-plus-threats.md` |
 | 57–61 | Malicious code, application attacks, privilege escalation, CSRF, directory traversal → `security-plus-threats.md`, `web-security.md`, `security-plus-vulnerabilities.md` |
@@ -29,6 +29,17 @@ This file documents the coverage design behind `cheatsheets/`. The topic numbers
 | 25–27 | Secure baselines, monitoring, SIEM/DLP/SNMP/NetFlow/log data → `security-plus-governance.md`, `soc-detection.md`, `networking-services.md` |
 | 28–29 | Incident response/planning, digital forensics/e-discovery → `incident-response.md`, `forensics.md` |
 | 30–31 | Firewalls/web filtering, DLP/endpoint/XDR/posture → `security-plus-mitigation.md`, `soc-detection.md` |
+
+## Security+ — Third Batch (30 topics)
+
+| Note range | Main coverage |
+|---|---|
+| 01–03 | Wireless/mobile security, application security, Sigma rules → `security-plus-architecture.md`, `security-plus-mitigation.md`, `web-security.md`, `soc-detection.md`, `splunk-sigma.md` |
+| 04–09 | Asset lifecycle, vulnerability scanning, threat intelligence, penetration testing, vulnerability analysis and remediation → `security-plus-governance.md`, `vulnerability-management.md`, `security-tools.md`, `soc-detection.md` |
+| 10–14 | OS security, secure protocols, email security, IAM, scripting and automation → `windows-ad.md`, `linux-security.md`, `networking-services.md`, `networking-ports.md`, `phishing-social-engineering.md`, `iam-access-control.md`, `linux-shell-git.md` |
+| 15–20 | Security policies, continuity, incident response/SDLC/change, standards/procedures, regulatory considerations, data roles → `security-plus-governance.md`, `incident-response.md`, `risk-grc-resilience.md`, `iam-access-control.md`, `web-security.md` |
+| 21–25 | Risk analysis, BIA, third-party assessments, agreements, compliance → `risk-grc-resilience.md`, `security-plus-governance.md`, `vulnerability-management.md` |
+| 26–30 | Privacy, data inventory/retention, audits, penetration testing/recon, awareness and training → `security-plus-governance.md`, `risk-grc-resilience.md`, `network-recon.md`, `vulnerability-management.md`, `phishing-social-engineering.md` |
 
 ## Networking — 26 topics
 
@@ -52,4 +63,14 @@ This file documents the coverage design behind `cheatsheets/`. The topic numbers
 | 10–15 | sort/uniq/strings, Base64/ROT13/hexdump, magic bytes/tar, SSH keys, netcat, OpenSSL → `linux-shell-git.md`, `security-tools.md`, `cryptography.md` |
 | 16–22 | chmod, file comparison, SetUID, cron, globbing, loops, shell escapes → `linux-security.md`, `linux-shell-git.md` |
 | 23–26 | Git basics, history/recovery, objects, object inspection/push → `linux-shell-git.md` |
-| 27–28 | Bash special parameters, environment variables/PATH → `linux-shell-git.md`, `linux-security.md` |
+| 27–28 | Bash special parameters, environment variables/PATH → `linux-shell-git.md`, `linux-security.md`
+
+## Additional practical detection artifacts
+
+These are mapped in addition to the topic-note count above:
+
+- **Windows failed-logon correlation:** Event ID 4625, grouped by username and source IP, threshold 5+ within 2 minutes → `soc-detection.md`, `splunk-sigma.md`.
+- **Encoded PowerShell command:** process creation plus an encoded-command switch → `windows-security.md`, `soc-detection.md`, `splunk-sigma.md`.
+- **Sigma-to-SPL workflow:** install Sigma CLI/backend, convert the YAML, inspect field mapping, and test positive and negative fixtures → `splunk-sigma.md`, `security-tools.md`.
+
+These newer detections are experimental. Synthetic-fixture checks and syntax/conversion checks must not be presented as proof that the rules work against real endpoint telemetry.
