@@ -2,7 +2,7 @@
 
 **Coverage status: 176 / 176 substantive topic notes mapped.**
 
-This file documents the coverage design behind `cheatsheets/`. Topic numbers refer to the indexes in each collection. Source-image indexes and page-level traceability files are references, not additional study topics.
+This file documents the coverage design behind `cheatsheets/`. Topic numbers refer to the indexes in each of the five collections. Source-image indexes and page-level traceability files are references, not additional study topics.
 
 ## Security+ — First Batch (61 topics)
 
