@@ -31,7 +31,7 @@ diff a b
 `&` = background.
 
 ## Permissions
-`r=4, w=2, x=1`
+`r=4, w=2, x=1`  
 `755 = rwx r-x r-x` · `644 = rw- r-- r--` · `600 = rw- --- ---`
 
 ## SSH / SCP
@@ -41,7 +41,8 @@ ssh user@host 'command'
 scp file user@host:/path
 ssh-keygen -t ed25519
 ```
-Private key must be protected; common SSH key file permissions should be restrictive.
+
+Private keys must be protected; common SSH private-key permissions should be restrictive.
 
 ## Useful security commands
 ```bash
@@ -61,29 +62,25 @@ SetUID executable = runs with file owner's effective privileges. Investigate une
 Cron = scheduled task mechanism; inspect jobs and scripts for unauthorized persistence.
 
 ## Shell behavior
-Globbing: `*` any string, `?` one character, `[]` character set.
-
-`$()` = command substitution.  
-`$?` = previous exit status.  
-`$0` = script name.  
-`$#` = argument count.  
-`$@` = positional arguments.
+Globbing: `*` any string, `?` one character, `[]` character set.  
+`$(...)` = command substitution.  
+`$?` = previous exit status. `$0` = script name. `$#` = argument count. `$@` = positional arguments.
 
 `PATH` controls executable lookup; untrusted writable PATH entries can become a security problem.
 
 ## File identification
-Magic bytes identify actual file format; don't trust filename extension alone.
-
-`hexdump` helps inspect raw bytes.  
-`tar` archives files without itself providing encryption.
-
+Magic bytes identify actual file format; don't trust filename extension alone.  
+`hexdump` helps inspect raw bytes. `tar` archives files without itself providing encryption.  
 Base64 / ROT13 / hex = encoding/representation, not encryption.
+
+## Automation safeguards
+Automate repeatable tasks with clear inputs, error handling, logging, version control, and least-privilege service accounts. Protect API keys/secrets. Use a dry run, defined scope, and human approval for destructive or high-impact actions; retain an audit trail and rollback path.
 
 ## Git security
 Git objects: **blob → file contents; tree → directory snapshot; commit → history metadata; tag → named reference**.
 
-`HEAD` = current reference.  `reflog` = local reference movement history.  `.git/objects` = object database.
+`HEAD` = current reference. `reflog` = local reference movement history. `.git/objects` = object database.
 
 Useful recovery: `git reflog`, `git show`, `git restore`, `git diff`.
 
-**Do not commit secrets.** History can retain sensitive material even after deletion.
+**Do not commit secrets.** Git history can retain sensitive material even after deletion.
