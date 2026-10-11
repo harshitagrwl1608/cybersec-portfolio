@@ -46,3 +46,6 @@ XDR = correlated detection across multiple security domains.
 ## Application control
 Allow list = only approved applications run.  
 Deny list = known-bad applications blocked.
+
+## Compensating controls
+When a permanent fix cannot be applied immediately, reduce exposure with isolation, restrictive firewall/ACL rules, reduced privileges, disabling a vulnerable feature, or increased monitoring. Record the risk owner, reason, scope, residual risk, expiry/review date, and remediation plan. Revalidate the control rather than treating an exception as a fix.
