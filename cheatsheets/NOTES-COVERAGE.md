@@ -4,6 +4,8 @@
 
 This file documents the coverage design behind `cheatsheets/`. Topic numbers refer to the indexes in each of the five collections. Source-image indexes and page-level traceability files are references, not additional study topics.
 
+Source indexes: [Security+ Batch 1](../notes/security-plus/First_Batch/INDEX.md) · [Security+ Batch 2](../notes/security-plus/Second_Batch/INDEX.md) · [Security+ Batch 3](../notes/security-plus/Third_Batch/INDEX.md) · [Networking](../notes/networking/QUICK-INDEX.md) · [Linux](../notes/linux/README.md).
+
 ## Security+ — First Batch (61 topics)
 
 | Note range | Main coverage |
