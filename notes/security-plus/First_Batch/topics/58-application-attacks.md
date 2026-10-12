@@ -35,5 +35,4 @@ Application attacks target software logic, input handling, memory safety, authen
    - auth as someone else
    - usually on-path + replay attack
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

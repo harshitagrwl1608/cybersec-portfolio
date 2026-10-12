@@ -44,5 +44,4 @@ A blockchain is a distributed data structure in which records are grouped into b
 5. If any block is altered, all blocks in chain are automatically recalculated
    - altered chain won't match the chain stored by rest of network, and will be rejected
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

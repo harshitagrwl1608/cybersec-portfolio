@@ -35,5 +35,4 @@ An on-path attacker positions themselves between two communicating parties so tr
   - everything looks normal
 - NOW IT IS JUST WARNING!! for sensitive info.!
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

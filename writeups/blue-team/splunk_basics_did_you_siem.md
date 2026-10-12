@@ -51,9 +51,9 @@ To determine when abnormal activity occurred, I grouped events by day:
 
 ```spl
 index=main sourcetype=web_traffic | timechart span=1d count
+```
 
 ![splunk_basics_01](../../images/writeups/splunk_basics_01.png)
-```
 
 The timeline showed the normal daily event volume followed by a distinctive spike, indicating a period of unusually intense activity.
 
@@ -61,9 +61,9 @@ I then reversed the results so the highest-volume period could be examined first
 
 ```spl
 index=main sourcetype=web_traffic | timechart span=1d count | sort by count | reverse
+```
 
 ![splunk_basics_02](../../images/writeups/splunk_basics_02.png)
-```
 
 The room identifies this intense period as the main attack phase launched by King Malhare.
 

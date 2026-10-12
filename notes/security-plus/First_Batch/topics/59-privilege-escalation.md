@@ -37,5 +37,4 @@ Example: **CVE: 2023-29336**
 - Windows elevation of privilege
 - reach highest level access (highest)
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

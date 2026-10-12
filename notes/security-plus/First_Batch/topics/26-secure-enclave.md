@@ -32,5 +32,4 @@ A secure enclave or trusted execution environment isolates sensitive operations 
   - Root cryptographic keys
   - Performs AES encryption in hardware, AND MORE...
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

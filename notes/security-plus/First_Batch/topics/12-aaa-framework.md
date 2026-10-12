@@ -38,5 +38,4 @@ AAA stands for Authentication, Authorization, and Accounting. The three steps an
    - Resources used
    - What, when logs
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

@@ -38,5 +38,4 @@ Public Key Infrastructure (PKI) binds public keys to identities and provides a t
 - Encrypt -> decrypt
 - PGP / GPG or
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

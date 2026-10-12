@@ -116,5 +116,4 @@ Threat vectors are the paths or mechanisms by which an attacker reaches a target
 - counterfeit hardware
   - 2020 -> fake USB switches
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

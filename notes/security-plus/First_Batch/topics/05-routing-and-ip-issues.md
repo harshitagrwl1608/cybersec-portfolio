@@ -72,5 +72,4 @@ Routing determines where packets should go next. IP troubleshooting therefore fo
   - One blocked by OS.
 - Use `ping` while manually config. IP.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

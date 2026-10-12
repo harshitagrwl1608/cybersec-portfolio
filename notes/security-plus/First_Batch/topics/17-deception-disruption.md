@@ -37,5 +37,4 @@ Deception and disruption change attacker behavior or waste attacker effort. Dece
    - Add some traceable data
    - E.g. API credentials, fake email
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

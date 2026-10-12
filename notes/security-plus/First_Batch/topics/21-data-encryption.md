@@ -41,5 +41,4 @@ Encryption at rest protects stored data; encryption in transit protects data mov
 - Encrypt in SQL and HTTPS
 - Get a VPN
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

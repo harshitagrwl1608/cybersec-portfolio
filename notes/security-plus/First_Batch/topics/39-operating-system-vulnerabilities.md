@@ -37,5 +37,4 @@ Operating-system vulnerabilities arise from flaws in kernels, drivers, system se
 - For large env.
   - get test done
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

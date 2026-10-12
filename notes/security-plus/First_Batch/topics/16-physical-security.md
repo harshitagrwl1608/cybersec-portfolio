@@ -59,5 +59,4 @@ Physical security protects people, facilities, devices, and supporting infrastru
 - Robust
 - Prevent climbing
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

@@ -35,5 +35,4 @@ Gap analysis compares the current security state with a desired target state. Th
 - Analyze & report
 - Make objectives, roadmap
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

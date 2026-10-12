@@ -27,5 +27,4 @@ Key escrow stores a recoverable copy of a cryptographic key so an authorized par
 - A legitimate business arrangement
 - Little controversial but necessary
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

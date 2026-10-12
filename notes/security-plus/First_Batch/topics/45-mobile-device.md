@@ -48,5 +48,4 @@ Mobile devices concentrate identity, communications, applications, credentials, 
   - without using app store
   - MDM becomes useless
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

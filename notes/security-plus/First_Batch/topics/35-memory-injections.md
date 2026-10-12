@@ -44,5 +44,4 @@ Memory-injection vulnerabilities involve modifying or redirecting data/code in p
   - very popular
   - runs as part of target system
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

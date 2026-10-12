@@ -74,5 +74,4 @@ Security controls are safeguards that reduce risk. Security+ commonly groups the
 - Do this please!
 - E.g. adhere to / follow / comply with policy
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

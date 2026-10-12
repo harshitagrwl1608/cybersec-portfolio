@@ -70,5 +70,4 @@ Network performance problems are usually characterized by congestion, bandwidth 
 - Jitter → time between frames.
   - Jitter stability / smoothness.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

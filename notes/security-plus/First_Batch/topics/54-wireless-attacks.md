@@ -57,5 +57,4 @@ Wireless attacks exploit radio communication, wireless authentication, managemen
   - `=1 (being used)`
   - `=2 (required)`
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

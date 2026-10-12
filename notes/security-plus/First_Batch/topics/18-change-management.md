@@ -132,5 +132,4 @@ Change management is a controlled method for modifying technology while managing
 - Mostly built in OS
 - If not, third-party version managing software
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

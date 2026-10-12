@@ -80,5 +80,4 @@ flowchart TD
 - Forensics.
 - Create a formal DB **[source wording unclear]**.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

@@ -84,5 +84,4 @@ flowchart TD
 - Pop-up malwares
 - Malware injection!!
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

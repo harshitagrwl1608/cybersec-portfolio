@@ -74,5 +74,4 @@ Device security reduces the attack surface of an endpoint or network device by r
 - Log key usage.
 - Encryptions etc.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

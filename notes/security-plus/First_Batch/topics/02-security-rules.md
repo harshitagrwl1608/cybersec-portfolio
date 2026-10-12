@@ -77,5 +77,4 @@ Security rules translate a security policy into concrete allow, deny, inspection
 - Simplified security policies.
   - From point of view of zones.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

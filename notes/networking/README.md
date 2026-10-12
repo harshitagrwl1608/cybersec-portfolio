@@ -7,8 +7,7 @@ These notes were reconstructed from the uploaded handwritten networking notebook
 - Every file in `topics/` is **standalone**: it contains definitions, examples, tables and text diagrams needed to understand that topic.
 - Topic files **do not depend on source page images**.
 - Flowcharts/diagrams are recreated as Mermaid or ASCII diagrams inside the Markdown.
-- The repository currently contains 15 Mermaid flowcharts; see `MERMAID-VERIFICATION.md` for the rendering/syntax audit.
-- Where the handwritten notes used shorthand or an outdated/ambiguous statement, the final notes use a corrected technical description and record the correction in the file's verification section.
+- Where the handwritten notes used shorthand or an outdated/ambiguous statement, the final notes use a corrected technical description.
 - `TRACEABILITY.md` is kept separately for audit purposes and is not required for study.
 
 ## Structure

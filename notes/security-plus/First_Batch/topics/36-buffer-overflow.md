@@ -29,5 +29,4 @@ A buffer overflow occurs when software writes more data into a memory region tha
   - require just right [copying], right data at right place
 - A good buffer overflow should be repeatable
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

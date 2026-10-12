@@ -32,5 +32,4 @@ A race condition occurs when the result depends on the timing or ordering of con
 ### Example
 Imagine 2 people using same bank account. Deposits are updated real-time but withdrawals are not, so the 2nd person might run into problem if one withdraws money while its not updated and 2nd one thinks he still got all.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

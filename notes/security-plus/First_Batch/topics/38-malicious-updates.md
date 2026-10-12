@@ -46,5 +46,4 @@ Example: **Sol[ar]Wind[s] Orion** supply-chain attack
 - Catastrophic
 - Gained access to really sensitive info.
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

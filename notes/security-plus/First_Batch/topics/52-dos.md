@@ -39,5 +39,4 @@ Denial-of-Service (DoS) attacks attempt to reduce or eliminate availability. The
 - exploit protocols
 - DNS ANY <domain>
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

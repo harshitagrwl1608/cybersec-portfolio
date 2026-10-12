@@ -45,7 +45,3 @@ All 84 scanned pages are available individually in [`source-images/pages/`](sour
 
 - [`PAGE_COVERAGE.md`](PAGE_COVERAGE.md) — page-by-page coverage of all 84 scanned pages.
 
-- [`COURSE_ALIGNMENT.md`](COURSE_ALIGNMENT.md) — how these notes map to the Professor Messer SY0-701 sequence.
-- [`WEB_VERIFICATION.md`](WEB_VERIFICATION.md) — primary and authoritative references used for technical verification.
-- [`VISIBILITY_AND_SUPPLEMENT_LOG.md`](VISIBILITY_AND_SUPPLEMENT_LOG.md) — shorthand/ambiguous material that was clarified or supplemented.
-- [`CROSS_CHECK.md`](CROSS_CHECK.md) — structural and content checks.

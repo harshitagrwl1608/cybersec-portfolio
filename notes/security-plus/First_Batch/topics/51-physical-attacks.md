@@ -40,5 +40,4 @@ Physical attacks target facilities, equipment, or people rather than only softwa
 - fire suppression
 - take system down
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

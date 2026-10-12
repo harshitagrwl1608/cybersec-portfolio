@@ -91,5 +91,4 @@ There can be a lot of motivations of the actor.
 - Method used by attacker
 - A lot of work goes into finding new / exploiting vectors
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

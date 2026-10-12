@@ -61,5 +61,4 @@ Replay attacks reuse previously captured valid data or tokens to impersonate a p
   - Encrypt end-to-end some?
   - E.g. Personal VPN
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

@@ -51,5 +51,4 @@ Authentication establishes who or what a subject is; authorization decides what 
 - Create a group with mapped perms
 - Scalable
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

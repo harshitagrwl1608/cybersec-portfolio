@@ -48,5 +48,4 @@ A zero-day vulnerability is a vulnerability that is unknown to the party respons
    - sandbox escape, disclosure of sensitive info, arbitrary code execution
    - Active exploit
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

@@ -153,6 +153,8 @@ script.sh arg1 arg2
 
 command -> exit status -> $?
 background job -> PID -> $!
-shell process -> PID -> $$
+shell process -> PID -> $
+```
+
 > **Verification status:** The commands and behavioral descriptions in this file were checked against current/official documentation where practical. Where a handwritten example differs from current behavior, the corrected behavior is stated explicitly so this file can be used independently.
 

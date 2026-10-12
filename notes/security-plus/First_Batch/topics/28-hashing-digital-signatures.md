@@ -40,5 +40,4 @@ Hashing creates a fixed-length digest; digital signatures use asymmetric keys to
 - Confirm msg source
 - Sign with private key -> verify with public key
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

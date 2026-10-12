@@ -36,5 +36,4 @@ Encryption technologies are implementations that apply cryptography to particula
   - prevent unauthorized access
   - cryptographic accelerators
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+

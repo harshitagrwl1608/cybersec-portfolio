@@ -48,5 +48,4 @@ Flow:
 - Symmetric key is then used
 - No need of sending keys [thereafter]
 
-## Further reading (optional)
-Verified against current security-engineering guidance; see `WEB_VERIFICATION.md` for the external verification set.
+
