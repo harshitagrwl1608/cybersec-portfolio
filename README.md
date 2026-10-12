@@ -31,6 +31,26 @@ This repository is organized as a portfolio and learning record. Notes are inten
 - UFW/Docker firewall testing lab
 - Detection-rule development and MITRE ATT&CK mapping
 
+## Featured Windows detections
+
+### Windows brute-force detection
+
+A Windows failed-logon building-block rule (Event ID 4625), with a walkthrough showing how to correlate **5+ failed logons for the same user and source IP within two minutes**.
+
+- [Sigma rule](detections/sigma/Rule_1/windows_brute_force_detected.yml)
+- [Manual detection write-up](detections/sigma/Rule_1/windows_brute_force_detection_writeup_manual.md)
+- [Splunk walkthrough](detections/sigma/Rule_1/windows_brute_force_detection_writeup_with_splunk.md)
+
+### Encoded PowerShell command execution
+
+A process-creation detection for PowerShell or `pwsh` launched with `-EncodedCommand` or an abbreviation, using command-line telemetry.
+
+- [Sigma rule](detections/sigma/Rule_2/Suspicious_Powershell_Command_Execution.yml)
+- [Manual detection write-up](detections/sigma/Rule_2/suspicious_powershell_detection_writeup_manual.md)
+- [Splunk walkthrough](detections/sigma/Rule_2/suspicious_powershell_detection_writeup_with_splunk.md)
+
+**Validation status:** Both detections are experimental. The Sigma rules were parsed/linted with `sigma-cli`, and their converted Splunk queries were inspected; neither rule has been run against real telemetry. See the linked write-ups for the workflow and limitations.
+
 ## Documentation principles
 
 - **Evidence over claims:** practical results are distinguished from conceptual examples.
