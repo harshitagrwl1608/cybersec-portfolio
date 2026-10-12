@@ -49,7 +49,7 @@ A process-creation detection for PowerShell or `pwsh` launched with `-EncodedCom
 - [Manual detection write-up](detections/sigma/Rule_2/suspicious_powershell_detection_writeup_manual.md)
 - [Splunk walkthrough](detections/sigma/Rule_2/suspicious_powershell_detection_writeup_with_splunk.md)
 
-**Validation status:** Both detections are experimental. The Sigma rules were parsed/linted with `sigma-cli`, and their converted Splunk queries were inspected; neither rule has been run against real telemetry. See the linked write-ups for the workflow and limitations.
+**Validation status:** Both detections are experimental. The Sigma rules were parsed/linted with `sigma-cli`, and their converted Splunk queries were inspected;rules have been tested against sample logs not against real telemetry. See the linked write-ups for the workflow and limitations.
 
 ## Documentation principles
 
