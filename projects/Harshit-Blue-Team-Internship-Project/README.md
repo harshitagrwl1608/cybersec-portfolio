@@ -1,4 +1,4 @@
-# Blue Team Internship Project: Web Application Detection and Response
+# Blue Team Internship Project: Web Application Security Assessment
 
 **Student:** Harshit  
 **University:** J.C. Bose University of Science and Technology, YMCA, Faridabad  
@@ -17,8 +17,8 @@ The strongest demonstrated issues were an HTTP login POST that exposed dummy for
 |---|---|---|
 | Login form submitted over HTTP; dummy fields visible in the capture | High risk if real credentials use this route | EV-01, EV-02 |
 | Blind SQL injection reported by SQLMap; six database names listed, no records dumped | High | EV-04 |
-| Reflected SVG event-handler input returned unencoded and browser alert observed | Medium; no session theft or victim impact tested | EV-06 |
-| Gobuster identified paths; manually checked /admin/ and /backup/ returned 404 | Informational; no exposure demonstrated | EV-03 |
+| Reflected SVG event-handler input returned unencoded and browser alert observed | Medium; no session theft or victim impact tested | EV-01, EV-06 |
+| Gobuster identified paths; manually checked /admin/ and /backup/ returned 404 | Informational; no exposure demonstrated | EV-01, EV-03 |
 | Three dummy failed logins; no obvious delay or lockout | Inconclusive; not a confirmed brute-force weakness | EV-01, EV-02 |
 
 Ratings are qualitative project triage, not CVSS scores. Severity and evidence confidence are explained in [SEVERITY_AND_RISK.md](docs/SEVERITY_AND_RISK.md). Evidence IDs and exact artifact paths are in [EVIDENCE_REGISTER.md](docs/EVIDENCE_REGISTER.md).
@@ -31,8 +31,8 @@ The internship letter itself is not included because it is a private document. T
 
 ## Key technical results
 
-- **Cleartext login:** the capture contains three POST requests to /Login.asp over HTTP port 80 (frames 22, 29, and 36). The form body is visible in the packet capture and contains deliberately invalid dummy values.
-- **SQL injection:** SQLMap reported boolean-based blind and time-based blind indications on showforum.asp?id=0, identified Microsoft SQL Server, and listed six database names. No table or record extraction was performed. The SQLMap terminal evidence is separate from the browser packet capture.
+- **Cleartext login:** the sanitized capture contains three POST requests to /Login.asp over HTTP port 80 (frames 22, 29, and 36). The form body is visible and contains deliberately invalid dummy values. The repeated server-issued ASPSESSIONID value was replaced in the public capture.
+- **SQL injection:** SQLMap reported boolean-based blind and time-based blind indications on showforum.asp?id=0, identified Microsoft SQL Server, and listed six database names. No table or record extraction was performed. The redacted terminal result summary is in [evidence/sqlmap_results_redacted.md](evidence/sqlmap_results_redacted.md); original terminal screenshots containing session data are not published.
 - **Reflected XSS:** the request in frame 57 supplied an SVG onload probe; the response body in frames 58-64 reflected the input without output encoding. The browser alert screenshot documents execution in the test browser.
 - **Directory discovery:** Gobuster's output is supplied as terminal screenshots. The packet capture separately records manual checks of /admin/ and /backup/, both of which returned 404. No directory listing was demonstrated.
 - **Login guessing:** three dummy failed login attempts were made. This is insufficient to assess lockout or rate limiting under sustained attempts.
@@ -79,15 +79,18 @@ docs/
   SETUP_AND_REPRODUCTION.md
   SOC_DETECTION.md
 evidence/
-  capture/testasp_training_capture.pcapng
-  report/blue_team_assessment_report.pdf
+  capture/testasp_training_capture.pcapng.gz   # sanitized PCAPNG, gzip-compressed
+  report/README.md                             # report publication note
   screenshots/
+  sqlmap_results_redacted.md
 .gitignore
 README.md
 ```
 
-## Evidence notes
+## Evidence and publication safety
 
-The 68-packet capture contains browser-based HTTP activity, including the login form submissions, manual path checks, the SQL-like search probe, and the reflected-XSS request/response. Gobuster and SQLMap activity is documented by separate terminal screenshots and is not present in that packet capture. The form values are deliberately invalid dummy values. No live SIEM alerts or server-side logs were collected.
+The sanitized 68-packet capture is gzip-compressed. Its 12 occurrences of the server-issued ASPSESSIONID value have been replaced with an equal-length placeholder, and the affected TCP checksums have been recalculated. This preserves packet count and the other HTTP evidence while preventing reuse of the captured session token.
 
-The PDF at evidence/report/blue_team_assessment_report.pdf is the original submitted report artifact and has not been regenerated in this documentation update. The expanded evidence register, severity rationale, remediation guidance, ATT&CK clarification, and executive summary in the Markdown documents are the updated review material. Regenerate the PDF from the updated material before using it as the final consolidated submission.
+The SQLMap terminal screenshots and original PDF have been removed from the current public tree because they may expose server-issued session metadata. A text summary of the SQLMap results is provided instead. The detailed Markdown documents are the current project record; the removed PDF should only be reintroduced after a clean rebuild that excludes session identifiers.
+
+The current tree is sanitized, but earlier commits may still contain the original artifacts. Removing files in a new commit does not erase them from Git history. A history rewrite and force-push would be required to purge those earlier versions completely.
