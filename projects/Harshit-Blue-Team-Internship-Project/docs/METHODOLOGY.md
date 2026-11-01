@@ -30,7 +30,7 @@ Three invalid dummy login submissions were used. SQLMap was limited to the speci
 - SQLMap reported boolean-based blind and time-based blind injection indications on the id parameter.
 - SQLMap identified Microsoft SQL Server and enumerated six database names: acuforum, acuserservice, master, model, msdb, and tempdb.
 - Stopped at database-name enumeration. No tables or records were dumped.
-- SQLMap terminal activity is represented by screenshots, not by the 68-packet browser capture.
+- SQLMap terminal activity is summarized in evidence/sqlmap_results_redacted.md. The original terminal screenshots were removed from the public tree because they displayed a server-issued ASPSESSIONID value.
 
 ### SQL-like search probe
 
@@ -47,12 +47,14 @@ Three invalid dummy login submissions were used. SQLMap was limited to the speci
 
 ## 3. Evidence handling
 
-Evidence IDs EV-01 through EV-07 are defined in [EVIDENCE_REGISTER.md](EVIDENCE_REGISTER.md). The PCAP is EV-01. Wireshark login screenshots are EV-02; Gobuster and directory-check artifacts are EV-03; SQLMap terminal screenshots are EV-04; the separate SQL-like probe/error is EV-05; and XSS request/response and browser screenshots are EV-06.
+Evidence IDs EV-01 through EV-06 are defined in [EVIDENCE_REGISTER.md](EVIDENCE_REGISTER.md). The sanitized PCAP is EV-01. Wireshark login screenshots are EV-02; Gobuster and directory-check artifacts are EV-03; the redacted SQLMap result summary is EV-04; the separate SQL-like probe/error is EV-05; and XSS request/response and browser screenshots are EV-06.
 
-The PCAP was inspected directly and contains 68 packets. The browser capture includes login submissions, manual path checks, search probes, and the reflected-XSS request/response. Gobuster and SQLMap activity is not contained in that capture.
+The public PCAP was sanitized to replace the repeated server-issued ASPSESSIONID value in 12 HTTP request headers with a same-length placeholder. The packet count, packet lengths, frame numbering, timestamps, and other payload bytes were preserved; TCP checksums were recalculated for each changed packet.
 
-The source-side address is a private address from the capture environment and is not repeated in the report. The destination address 44.238.29.244 is recorded only as a capture-time observation; it should not be reused as a durable IOC.
+The local source-side address is a private address from the capture environment and is not repeated in this report. The destination address 44.238.29.244 is recorded only as a capture-time observation; it should not be reused as a durable IOC.
 
 ## 4. Limitations
 
 There was no access to application server logs, database audit logs, WAF telemetry, or a live SIEM. Detection ideas are recommendations, not observed alerts. The login-rate-limit assessment used only three failed attempts. The directory scan identified paths, but did not demonstrate a directory index or prove that returned content was sensitive. SQLMap enumerated database names but did not establish that records were exposed. The XSS check demonstrated reflected script execution in the test browser only.
+
+The original PDF report and SQLMap terminal screenshots were removed from the current public tree because they could contain server-issued session metadata. Earlier commits may still retain the original artifacts; the current tree is sanitized, but full removal from Git history would require a repository history rewrite.
