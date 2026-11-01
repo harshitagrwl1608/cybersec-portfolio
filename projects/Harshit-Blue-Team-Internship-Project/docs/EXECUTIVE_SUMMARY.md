@@ -28,6 +28,6 @@ The assessment demonstrated three material web-security weaknesses in the traini
 
 ## Scope and confidence
 
-The browser PCAP contains 68 packets. It directly supports the HTTP login, manual path checks, search probes, and reflected-XSS request/response. SQLMap and Gobuster terminal results are preserved separately as screenshots and are not part of that PCAP. The exercise used dummy login values, did not dump database records, and did not access application/server logs, database audit logs, WAF telemetry, endpoint telemetry from other users, or a live SIEM. No production compromise or data exposure is claimed.
+The sanitized browser PCAP contains 68 packets. It directly supports the HTTP login, manual path checks, search probes, and reflected-XSS request/response. SQLMap results are summarized in a redacted text artifact; Gobuster results remain in separate screenshots. The exercise used dummy login values, did not dump database records, and did not access application/server logs, database audit logs, WAF telemetry, endpoint telemetry from other users, or a live SIEM. No production compromise or data exposure is claimed.
 
 Severity labels are qualitative project triage, not CVSS scores. Full evidence references, confidence grades, limitations, ATT&CK context, and retest criteria are in [FINDINGS.md](FINDINGS.md), [EVIDENCE_REGISTER.md](EVIDENCE_REGISTER.md), [SEVERITY_AND_RISK.md](SEVERITY_AND_RISK.md), and [REMEDIATION.md](REMEDIATION.md).
