@@ -1,0 +1,14 @@
+# Local secrets and generated data
+.env
+.env.*
+*.log
+*.dump
+*.sql
+sqlmap/
+dumps/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
