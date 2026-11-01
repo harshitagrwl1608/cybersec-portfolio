@@ -7,70 +7,87 @@
 **Internship:** Cyber Security Intern, Hack Secure  
 **Program detail from the provided letter:** three-week, educational and training-based program scheduled during 2026; letter dated 13 October 2026.
 
-This repository documents the Blue Team assessment completed as a practical internship project. It covers the task, setup, test method, evidence, findings, SOC relevance, and lessons learned. The internship letter itself is not included because it is a private document; only its relevant details are recorded above.
+## Executive summary
 
-## Project overview
+This project assessed an intentionally vulnerable training web application against authentication, directory-discovery, SQL-injection, and reflected-XSS scenarios. The task originally named testphp.vulnweb.com; that host did not accept connections during the assessment, so the approved alternative testasp.vulnweb.com was used. Testing was limited to that training host. Only dummy login values were submitted, and SQLMap was stopped after database-name enumeration.
 
-The assignment was to examine an intentionally vulnerable web application and report on four defensive scenarios:
+The strongest demonstrated issues were an HTTP login POST that exposed dummy form values in clear text, SQLMap-validated blind SQL injection on the forum identifier, and reflected XSS that executed in the test browser. Directory discovery found responding paths but did not demonstrate a directory listing or sensitive-file exposure. Three failed login submissions were not enough to determine whether sustained password guessing would be rate-limited.
 
-1. Brute-force indicators and directory enumeration.
-2. Plaintext credential transmission during login.
-3. SQL injection indicators and impact.
-4. Cross-site scripting (XSS) in user input.
-
-The original task host, `testphp.vulnweb.com`, did not accept connections during the assessment. The approved alternative, `testasp.vulnweb.com`, was used. Testing was limited to that training site. Only dummy login values were submitted. SQLMap was used to enumerate database names; no table contents or customer records were dumped.
-
-## Key results
-
-| Area | Result | Why a SOC analyst should care |
+| Observation | Assessment | Evidence |
 |---|---|---|
-| Directory discovery | Gobuster identified responding paths. The manually checked `/admin/` and `/backup/` paths returned 404. No directory listing was demonstrated. | Distinguish a path being present from actual exposure; investigate bursts of requests and review the endpoints that respond. |
-| Login transport | The `POST /Login.asp` request used HTTP. Wireshark shows dummy form fields in clear text. | Credentials sent without TLS can be read by someone observing the network. |
-| SQL injection | SQLMap reported blind SQL injection on `showforum.asp?id=0`, identified Microsoft SQL Server, and listed six database names. No records were dumped. | A confirmed injection finding calls for urgent application and database review, plus correlation with web and database logs. |
-| Reflected XSS | The search input executed in the browser and opened an alert. The evidence includes the alert screenshot. | Reflected script can run in a visitor's browser; analysts should correlate suspicious input with the response and affected users. |
-| Login guessing | Three dummy failed logins were submitted. No obvious delay or lockout appeared, but this is too few attempts to assess sustained abuse. | Authentication monitoring needs thresholds and context; a few failures alone are not proof of a brute-force attack. |
+| Login form submitted over HTTP; dummy fields visible in the capture | High risk if real credentials use this route | EV-01, EV-02 |
+| Blind SQL injection reported by SQLMap; six database names listed, no records dumped | High | EV-04 |
+| Reflected SVG event-handler input returned unencoded and browser alert observed | Medium; no session theft or victim impact tested | EV-06 |
+| Gobuster identified paths; manually checked /admin/ and /backup/ returned 404 | Informational; no exposure demonstrated | EV-03 |
+| Three dummy failed logins; no obvious delay or lockout | Inconclusive; not a confirmed brute-force weakness | EV-01, EV-02 |
 
-The report and evidence are in [`evidence/`](evidence/). Detailed findings and caveats are in [`docs/FINDINGS.md`](docs/FINDINGS.md).
+Ratings are qualitative project triage, not CVSS scores. Severity and evidence confidence are explained in [SEVERITY_AND_RISK.md](docs/SEVERITY_AND_RISK.md). Evidence IDs and exact artifact paths are in [EVIDENCE_REGISTER.md](docs/EVIDENCE_REGISTER.md).
 
-## Setup and review
+## Scope and safety
 
-The artifacts can be reviewed without rerunning tests. To inspect the packet capture, install Wireshark and open:
+The assignment covered four defensive scenarios: brute-force indicators and directory enumeration, plaintext credential transmission, SQL injection, and cross-site scripting. The task's original host did not accept connections during the assessment; the approved alternative was used instead. Only dummy login values were submitted. SQLMap was used to enumerate database names; no table contents or customer records were dumped.
 
-```text
-evidence/capture/testasp_training_capture.pcapng
-```
+The internship letter itself is not included because it is a private document. This repository records only relevant program details and does not present this project as a certificate of completion or proof of employment.
 
-Use the display filter `http` to view the HTTP exchange, or `frame.number == 22` to isolate the login POST. Expand **Hypertext Transfer Protocol** and **HTML Form URL Encoded** to see the dummy fields. The supplied screenshot `evidence/screenshots/wireshark_login_expanded.png` shows this expanded view.
+## Key technical results
 
-Tool installation and carefully scoped reproduction commands are in [`docs/SETUP_AND_REPRODUCTION.md`](docs/SETUP_AND_REPRODUCTION.md). Read the scope note there before running any command. Do not run the scans against systems you do not own or have explicit permission to test.
+- **Cleartext login:** the capture contains three POST requests to /Login.asp over HTTP port 80 (frames 22, 29, and 36). The form body is visible in the packet capture and contains deliberately invalid dummy values.
+- **SQL injection:** SQLMap reported boolean-based blind and time-based blind indications on showforum.asp?id=0, identified Microsoft SQL Server, and listed six database names. No table or record extraction was performed. The SQLMap terminal evidence is separate from the browser packet capture.
+- **Reflected XSS:** the request in frame 57 supplied an SVG onload probe; the response body in frames 58-64 reflected the input without output encoding. The browser alert screenshot documents execution in the test browser.
+- **Directory discovery:** Gobuster's output is supplied as terminal screenshots. The packet capture separately records manual checks of /admin/ and /backup/, both of which returned 404. No directory listing was demonstrated.
+- **Login guessing:** three dummy failed login attempts were made. This is insufficient to assess lockout or rate limiting under sustained attempts.
 
 ## SOC analyst significance
 
-This exercise helped connect raw web activity to triage decisions. A SOC analyst should preserve request and response evidence, distinguish indicators from confirmed impact, correlate web logs with authentication and database logs, assign severity based on what was actually demonstrated, and record limitations. In this exercise there was no live SIEM, server-side log access, or confirmed unauthorized data access. The detection logic in [`docs/SOC_DETECTION.md`](docs/SOC_DETECTION.md) is proposed guidance, not an alert that fired.
+The exercise connects web requests and tool output to triage decisions. A SOC analyst should preserve request and response evidence, distinguish indicators from confirmed impact, correlate web activity with authentication and database telemetry, assign severity based on what the evidence demonstrates, and record limitations. There was no live SIEM, server-side log access, database audit-log access, or confirmed unauthorized data access. The guidance in [SOC_DETECTION.md](docs/SOC_DETECTION.md) is proposed detection logic, not an alert that fired.
 
-## What I learned
+## Remediation priorities
 
-I gained practical experience with HTTP traffic analysis in Wireshark, controlled directory discovery with Gobuster, SQL injection validation with SQLMap, browser-based XSS verification, and evidence-based security reporting. I also learned to state uncertainty clearly: a 404 is not proof that all directories are safe, a server error alone does not prove SQL injection, and three failed logins cannot establish whether rate limiting handles sustained abuse.
+1. Remove the SQL injection condition using parameterized database access and least-privilege database permissions.
+2. Enforce HTTPS for all authentication and session-bearing routes.
+3. Apply context-aware output encoding to the search results and validate the reflected-XSS fix.
+4. Review discovered paths and remove or restrict unnecessary public content.
+5. Implement and test rate limits, MFA, and meaningful authentication telemetry.
 
-See [`docs/LEARNINGS_AND_INTERNSHIP.md`](docs/LEARNINGS_AND_INTERNSHIP.md) for a first-person reflection suitable for an internship submission.
+The detailed, finding-specific plan is in [REMEDIATION.md](docs/REMEDIATION.md).
+
+## Project documentation
+
+| Document | Purpose |
+|---|---|
+| [Executive summary](docs/EXECUTIVE_SUMMARY.md) | Concise management-ready overview |
+| [Findings and impact](docs/FINDINGS.md) | Technical observations, ratings, evidence IDs, and limits |
+| [Evidence register](docs/EVIDENCE_REGISTER.md) | Evidence IDs, artifact links, and frame references |
+| [Severity and risk method](docs/SEVERITY_AND_RISK.md) | Qualitative rating definitions and confidence |
+| [Remediation plan](docs/REMEDIATION.md) | Practical corrective actions and retest criteria |
+| [Methodology](docs/METHODOLOGY.md) | Scope, test approach, and evidence handling |
+| [SOC detection notes](docs/SOC_DETECTION.md) | Proposed monitoring, triage, and false-positive guidance |
+| [Setup and reproduction](docs/SETUP_AND_REPRODUCTION.md) | Tool setup and scoped reproduction notes |
+| [Learning reflection](docs/LEARNINGS_AND_INTERNSHIP.md) | Internship context and first-person reflection |
 
 ## Repository map
 
-```text
+```
 docs/
+  EVIDENCE_REGISTER.md
+  EXECUTIVE_SUMMARY.md
   FINDINGS.md
   LEARNINGS_AND_INTERNSHIP.md
   METHODOLOGY.md
+  REMEDIATION.md
+  SEVERITY_AND_RISK.md
   SETUP_AND_REPRODUCTION.md
   SOC_DETECTION.md
 evidence/
   capture/testasp_training_capture.pcapng
   report/blue_team_assessment_report.pdf
-  screenshots/             # original browser, Wireshark, Gobuster, and SQLMap screenshots
+  screenshots/
 .gitignore
 README.md
 ```
 
 ## Evidence notes
 
-The 68-packet capture contains the browser-based login, manual path checks, and search probes. Gobuster and SQLMap activity is documented by the separate terminal screenshots and is not present in that packet capture. The username and password shown in the capture are deliberately invalid dummy values created for this exercise. No live SIEM alerts or server logs were collected.
+The 68-packet capture contains browser-based HTTP activity, including the login form submissions, manual path checks, the SQL-like search probe, and the reflected-XSS request/response. Gobuster and SQLMap activity is documented by separate terminal screenshots and is not present in that packet capture. The form values are deliberately invalid dummy values. No live SIEM alerts or server-side logs were collected.
+
+The PDF at evidence/report/blue_team_assessment_report.pdf is the original submitted report artifact and has not been regenerated in this documentation update. The expanded evidence register, severity rationale, remediation guidance, ATT&CK clarification, and executive summary in the Markdown documents are the updated review material. Regenerate the PDF from the updated material before using it as the final consolidated submission.
